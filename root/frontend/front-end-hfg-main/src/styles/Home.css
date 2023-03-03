@@ -1,0 +1,38 @@
+
+.button-group{
+    display: flex;
+    width: 30%;
+    justify-content: space-evenly;
+    margin: auto;
+}
+.content-feed{
+    border: solid black;
+    height: 10rem;
+    margin: .1rem;
+}
+.user-templates{
+    border: solid black;
+    height: 10rem;
+    margin: .1rem;
+}
+.links{
+    display: flex;
+    margin: auto;
+    justify-content: space-around;
+    width: 30%;
+}
+.container{
+    background-color: #acb4f1;
+    width: 80vw;
+    margin: auto;
+    border-radius: 2rem;
+    margin-top: 3rem;
+    padding: 2rem;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+    text-align: left;
+}

@@ -1,19 +1,14 @@
-
-.button-group{
-    display: flex;
-    width: 30%;
-    justify-content: space-evenly;
-    margin: auto;
+#title{
+    font-size: 5rem;
+    margin-bottom: 3rem;
+    margin-top: 5rem;
 }
-.content-feed{
-    border: solid black;
-    height: 10rem;
-    margin: .1rem;
-}
-.user-templates{
-    border: solid black;
-    height: 10rem;
-    margin: .1rem;
+#splash-text{
+    width: 35rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+    font-size: 1.25rem;
 }
 .links{
     display: flex;
@@ -22,17 +17,35 @@
     width: 30%;
 }
 .container{
-    background-color: #acb4f1;
+    background-color: white;
     width: 80vw;
     margin: auto;
-    border-radius: 2rem;
     margin-top: 3rem;
     padding: 2rem;
-}
-form{
     display: flex;
-    flex-direction: column;
-    width: 50%;
+}
+.main-content{
+    width: 60%;
+    min-height: 60vh;
+}
+.img-placeholder{
+    background-color: rgb(179, 179, 179);
+    width: 40%;
+}
+.placeholder{
     margin: auto;
-    text-align: left;
+}
+.styled-link{
+    text-decoration: none;
+    background-color: rgb(179, 179, 179);
+    padding: .5rem;
+    width: 5rem;
+    border-radius: .5rem;
+    margin: 1px;
+}
+.styled-link:visited{
+    color: black;
+}
+.styled-link:hover{
+    background-color: #acb4f1;
 }

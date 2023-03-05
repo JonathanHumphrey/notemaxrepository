@@ -10,7 +10,14 @@ function App() {
 	return (
 		<div className="App">
 			<header>
-				<h1>NoteMax</h1>
+				<div className="left-block">
+					<h3>(Logo)</h3>
+					<h3>Information</h3>
+				</div>
+				<div className="right-block">
+					<h2>Log In</h2>
+					<h2>Help</h2>
+				</div>
 			</header>
 			<BrowserRouter>
 				<Routes>

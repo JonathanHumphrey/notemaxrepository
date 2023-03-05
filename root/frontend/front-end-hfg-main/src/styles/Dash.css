@@ -1,0 +1,23 @@
+.button-group{
+    display: flex;
+    width: 30%;
+    justify-content: space-evenly;
+    margin: auto;
+}
+.content-feed{
+    border: solid black;
+    height: 10rem;
+    margin: .1rem;
+}
+.user-templates{
+    border: solid black;
+    height: 10rem;
+    margin: .1rem;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+    text-align: left;
+}

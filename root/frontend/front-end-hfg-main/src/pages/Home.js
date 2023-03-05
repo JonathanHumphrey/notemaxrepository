@@ -5,22 +5,28 @@ import { Link } from "react-router-dom";
 const Home = () => {
 	return (
 		<div className="container">
-			<h3>What is Note Max?</h3>
-			<p>
-				Note Max is a template creation and sharing platform that allows each
-				user to vote for their favorite template in each category in order to
-				determine the optimal template for each specific purpose
-			</p>
-			<h3>Why Note Max?</h3>
-			<p>
-				Note Max aims to put all the templates you may need in one spot and
-				allows users to effect which ones are at the top! No more sifting
-				through lists of the included templates in your editor of choice
-			</p>
-			<div className="links">
-				<Link to="/login">Log In</Link>
-				<Link to="/signup">Sign Up</Link>
-				<Link to="/dash"> Dashboard</Link>
+			<div className="main-content">
+				<h1 id="title">NoteMax</h1>
+				<p id="splash-text">
+					Lorem ipsum dolor sit amet consectetur. Aliquam nunc blandit et fusce
+					enim donec nunc cursus. Accumsan vivamus sit morbi id. Tristique
+					malesuada turpis vulputate porta.
+				</p>
+				<div className="links">
+					<Link className="styled-link" to="/login">
+						Log In
+					</Link>
+					<Link className="styled-link" to="/signup">
+						Sign Up
+					</Link>
+					<Link className="styled-link" to="/dash">
+						{" "}
+						Dashboard
+					</Link>
+				</div>
+			</div>
+			<div className="img-placeholder">
+				<p className="placeholder">image to be placed later</p>
 			</div>
 		</div>
 	);

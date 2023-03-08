@@ -1,10 +1,33 @@
 const express = require("express");
+const path = require("path");
+const { logger, logEvents } = require("./middleware/logger");
+const errorHandler = require("./middleware/errorHandler");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
+const mongoose = require("mongoose");
 
 const app = express();
 dotenv.config();
 connectDB();
 
+// Allows the server to have a basic landing page for development - JH
+app.use("/", express.static(path.join(__dirname, "public")));
+app.use("/", require("./routes/root"));
+
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, console.log(`Server started on PORT ${PORT}`));
+
+// connected the logger to the connection of the DB to keep track of failure to connect - JH
+app.use(errorHandler);
+
+mongoose.connection.once("open", () => {
+	console.log("Connected to MongoDB");
+	app.listen(PORT, console.log(`Server started on PORT ${PORT}`));
+});
+
+mongoose.connection.on("error", (err) => {
+	console.log(err);
+	logEvents(
+		`${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`,
+		"mongoErrLog.log"
+	);
+});

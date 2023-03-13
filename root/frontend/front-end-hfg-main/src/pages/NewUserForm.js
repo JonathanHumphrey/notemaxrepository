@@ -9,36 +9,45 @@ import { CATEGORIES } from "../config/categories";
 
 const USER_REGEX = /^[A-z]{3,20}$/;
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}/;
+const EMAIL_REGEX =
+	/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 const NewUserForm = () => {
 	const [addNewUser, { isLoading, isSuccess, isError, error }] =
 		useAddNewUserMutation();
 
 	const navigate = useNavigate();
-	const [username, setUsername] = useState("");
-	const [validUsername, setValidUsername] = useState(false);
+	const [name, setName] = useState("");
+	const [validName, setValidName] = useState(false);
+	const [email, setEmail] = useState("");
+	const [validEmail, setValidEmail] = useState(false);
 	const [password, setPassword] = useState("");
 	const [validPassword, setValidPassword] = useState(false);
 	const [categories, setCategories] = useState(["Worksheets"]);
 
 	useEffect(() => {
-		setValidUsername(USER_REGEX.test(username));
-	}, [username]);
+		setValidName(USER_REGEX.test(name));
+	}, [name]);
 
+	useEffect(() => {
+		setValidEmail(EMAIL_REGEX.test(email));
+	}, [email]);
 	useEffect(() => {
 		setValidPassword(PWD_REGEX.test(password));
 	}, [password]);
 
 	useEffect(() => {
 		if (isSuccess) {
-			setUsername("");
+			setName("");
 			setPassword("");
+			setEmail("");
 			setCategories([]);
-			navigate("/dash");
+			navigate("/login");
 		}
 	}, [isSuccess, navigate]);
-	const onUsernameChanged = (e) => setUsername(e.target.value);
+	const onnameChanged = (e) => setName(e.target.value);
 	const onPasswordChanged = (e) => setPassword(e.target.value);
+	const onEmailChanged = (e) => setEmail(e.target.value);
 
 	const onCategoriesChanged = (e) => {
 		const values = Array.from(
@@ -49,15 +58,13 @@ const NewUserForm = () => {
 	};
 
 	const canSave =
-		[categories.length, validUsername, validPassword].every(Boolean) &&
-		!isLoading;
+		[categories.length, validName, validPassword].every(Boolean) && !isLoading;
 
 	const onSaveUserClicked = async (e) => {
 		e.preventDefault();
 		if (canSave) {
-			console.log(username, password, categories);
-			//NEED BACKEND END POINT TO BE FINISHED BEFORE UNCOMMENTING THIS
-			//await addNewUser({ username, password, categories });
+			console.log(name, password, categories);
+			await addNewUser({ name, email, password, categories });
 		}
 	};
 
@@ -70,8 +77,9 @@ const NewUserForm = () => {
 		);
 	});
 	const errClass = isError ? "errmsg" : "";
-	const validUserClass = !validUsername ? "form__input--incomplete" : "";
+	const validUserClass = !validName ? "form__input--incomplete" : "";
 	const validPwdClass = !validPassword ? "form__input--incomplete" : "";
+	const validEmailClass = !validEmail ? "form__input--incomplete" : "";
 	const validCategoriesClass = !Boolean(categories.length)
 		? "form__input--incomplete"
 		: "";
@@ -90,17 +98,29 @@ const NewUserForm = () => {
 							</button>
 						</div>
 					</div>
-					<label className="form__label" htmlFor="username">
-						Username: <span className="nowrap">[3-20 letters]</span>
+					<label className="form__label" htmlFor="name">
+						name: <span className="nowrap">[3-20 letters]</span>
 					</label>
 					<input
 						className={`form__input ${validUserClass}`}
-						id="username"
-						name="username"
+						id="name"
+						name="name"
 						type="text"
 						autoComplete="off"
-						value={username}
-						onChange={onUsernameChanged}
+						value={name}
+						onChange={onnameChanged}
+					/>
+					<label className="form__label" htmlFor="email">
+						email: <span className="nowrap">[3-20 letters]</span>
+					</label>
+					<input
+						className={`form__input ${validEmailClass}`}
+						id="email"
+						name="email"
+						type="text"
+						autoComplete="off"
+						value={email}
+						onChange={onEmailChanged}
 					/>
 
 					<label className="form__label" htmlFor="password">

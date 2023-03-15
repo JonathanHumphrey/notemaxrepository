@@ -7,14 +7,14 @@
   margin-top: 0;
 }
 .left-block{
-  width: 70%;
-  
+  width: 35%;
+  padding-right: 200px;
   display: inherit;
   justify-content: center;
 }
 .right-block{
   width: 30%;
-  
+  padding-left: 200px;
   display: inherit;
   justify-content: center;
 }

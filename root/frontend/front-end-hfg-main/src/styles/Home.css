@@ -14,7 +14,7 @@
     display: flex;
     margin: auto;
     justify-content: space-around;
-    width: 30%;
+    width: 80%;
 }
 .container{
     background-color: white;
@@ -27,21 +27,35 @@
 .main-content{
     width: 60%;
     min-height: 60vh;
+    background-color: white;
 }
 .img-placeholder{
-    background-color: rgb(179, 179, 179);
-    width: 40%;
+    position: absolute;
+width: 880px;
+height: 480px;
+left: 915px;
+top: 222px;
+text-align: left;
+background: #D9D9D9;
 }
 .placeholder{
     margin: auto;
 }
 .styled-link{
-    text-decoration: none;
-    background-color: rgb(179, 179, 179);
-    padding: .5rem;
-    width: 5rem;
-    border-radius: .5rem;
-    margin: 1px;
+ 
+    color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 500px;
+    
+    background: #D9D9D9;
+    border-radius: 20px;
+
 }
 .styled-link:visited{
     color: black;

@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
 	return (
-		<div className="container">
+		
+		<div className="container" >
 			<div className="main-content">
 				<h1 id="title">NoteMax</h1>
 				<p id="splash-text">
@@ -19,10 +20,7 @@ const Home = () => {
 					<Link className="styled-link" to="/signup">
 						Sign Up
 					</Link>
-					<Link className="styled-link" to="/dash">
-						{" "}
-						Dashboard
-					</Link>
+					
 				</div>
 			</div>
 			<div className="img-placeholder">

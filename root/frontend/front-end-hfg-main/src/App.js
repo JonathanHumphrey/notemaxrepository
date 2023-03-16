@@ -11,8 +11,8 @@ function App() {
 		<div className="App">
 			<header>
 				<div className="left-block">
-					<h3>(Logo)</h3>
-					<h3>Information</h3>
+					<h2>(Logo)</h2>
+					<h2>Information</h2>
 				</div>
 				<div className="right-block">
 					<h2>Log In</h2>

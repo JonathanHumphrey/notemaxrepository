@@ -19,10 +19,6 @@ const Home = () => {
 					<Link className="styled-link" to="/signup">
 						Sign Up
 					</Link>
-					<Link className="styled-link" to="/dash">
-						{" "}
-						Dashboard
-					</Link>
 				</div>
 			</div>
 			<div className="img-placeholder">

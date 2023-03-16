@@ -5,15 +5,18 @@ import { useLoginMutation } from "../features/usersApiSlice";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-	const [loginUser, { isLoading, isSuccess, isError, error }] =
-		useLoginMutation();
+	const [loginUser, { isSuccess }] = useLoginMutation();
 	const navigate = useNavigate();
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const submit = async (e) => {
 		e.preventDefault();
-		await loginUser({ email, password });
+		try {
+			//await loginUser({ email, password });
+			const payload = await loginUser({ email, password });
+			localStorage.setItem("userId", payload.data._id);
+		} catch (error) {}
 	};
 	const changeEmail = (e) => setEmail(e.target.value);
 	const changePassword = (e) => setPassword(e.target.value);

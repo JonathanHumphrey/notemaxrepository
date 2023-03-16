@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const asyncHandler = require("express-async-handler");
 
 const registerUser = asyncHandler(async (req, res) => {
-	const { name, email, password, pic } = req.body;
+	const { name, email, password, categories } = req.body;
 
 	const userExists = await User.findOne({ email });
 
@@ -17,7 +17,7 @@ const registerUser = asyncHandler(async (req, res) => {
 		name,
 		email,
 		password,
-		pic,
+		categories,
 	});
 
 	if (user) {
@@ -41,6 +41,7 @@ const authUser = asyncHandler(async (req, res) => {
 			_id: user._id,
 			name: user.name,
 			email: user.email,
+			categories: user.categories,
 		});
 	} else {
 		res.status(400);
@@ -59,4 +60,25 @@ const getAllUsers = asyncHandler(async (req, res) => {
 
 	res.json(users);
 });
-module.exports = { registerUser, authUser, getAllUsers };
+
+// @desc Delete a User
+// @route DELETE /users
+// @access Private
+const deleteUser = asyncHandler(async (req, res) => {
+	const { id } = req.body;
+
+	if (!id) {
+		return res.status(400).json({ message: "User Id Required" });
+	}
+	const user = await User.findById(id).exec();
+
+	if (!user) {
+		return res.status(400).json({ message: "User not found" });
+	}
+
+	const result = await user.deleteOne();
+	const reply = `Username ${result.username} with ID ${result._id} deleted`;
+
+	res.json(reply);
+});
+module.exports = { registerUser, authUser, getAllUsers, deleteUser };

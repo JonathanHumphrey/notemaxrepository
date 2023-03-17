@@ -1,5 +1,7 @@
 import React from "react";
 import "../styles/Dash.css";
+import FileUpload from "./FileUpload";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUserById } from "../features/usersApiSlice";
@@ -13,16 +15,28 @@ const Dash = () => {
 	});
 	const userId = localStorage.getItem("userId");
 	const user = useSelector((state) => selectUserById(state, userId));
+
+	const [modalOpen, setModalOpen] = useState(false);
+	const handleModalOpen = () => {
+		setModalOpen(true);
+	};
+	const handleCloseModal = () => {
+		setModalOpen(false);
+	};
+
 	if (user) {
 		return (
 			<div className="container">
+				<div>
+					<FileUpload isOpen={modalOpen} onClose={handleCloseModal} />
+				</div>
 				<h2>Welcome, {user.name}</h2>
 				<div className="button-group">
 					<p>
 						<Link> Create Template </Link>
 					</p>
 					<p>
-						<Link> Upload Template </Link>
+						<button onClick={handleModalOpen}> Upload Template </button>
 					</p>
 				</div>
 				<div className="content-feed">

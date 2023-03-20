@@ -16,6 +16,7 @@ const LoginForm = () => {
 			//await loginUser({ email, password });
 			const payload = await loginUser({ email, password });
 			localStorage.setItem("userId", payload.data._id);
+			document.location.reload();
 		} catch (error) {}
 	};
 	const changeEmail = (e) => setEmail(e.target.value);

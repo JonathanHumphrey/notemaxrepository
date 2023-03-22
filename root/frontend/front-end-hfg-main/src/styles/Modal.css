@@ -18,18 +18,19 @@
 .modal.open{
     display: flex;
     position: relative;
-    width: 20rem;
+    width: 15rem;
 }
 .close-btn{
     position: relative;
-    top: -1.5rem;
-    right: -6rem;
+    top: -6rem;
+    right: -4.25rem;
     height: 2rem;
 }
 ul{
     list-style-type: none;
-    
+    margin-top: 3.5rem;
     text-align: left;
+  
 }
 li{
     cursor: pointer;

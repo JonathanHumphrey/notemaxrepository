@@ -1,3 +1,5 @@
+import { formatUTCDate } from "../features/formatTime";
+
 import { useState } from "react";
 import "../styles/FileUpload.css";
 import { Document, Page, pdfjs } from "react-pdf";
@@ -5,17 +7,16 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 function FileUpload(props) {
 	const [file, setFile] = useState(null);
+	const userId = localStorage.getItem("userId");
 	const [numPages, setNumPages] = useState(null);
 	const [pageNumber, setPageNumber] = useState(1);
 
 	function onDocumentLoadSuccess({ numPages }) {
 		setNumPages(numPages);
-	}
-
+	};
 	const handleFileChange = (event) => {
 		setFile(event.target.files[0]);
 	};
-
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const formData = new FormData();
@@ -23,7 +24,19 @@ function FileUpload(props) {
 		formData.append("file", file);
 		const pdfBlob = new Blob([file], { type: "application/pdf" });
 		setFile(pdfBlob);
-		console.log(file);
+		let date = new Date();
+		let category = document.getElementById("category").value;
+		let realDate = formatUTCDate(date)
+		let fileBlob = {
+			author: userId,
+			file: file,
+			date: date,
+			likes: 0,
+			dislikes: 0,
+			category: category,
+			comments: []
+		}
+		console.log(fileBlob);
 	};
 
 	return (
@@ -41,6 +54,10 @@ function FileUpload(props) {
 						<p>
 							Page {pageNumber} of {numPages}
 						</p>
+						<input 
+							type="text"
+							id="category"
+						/>
 					</div>
 					<button className="sub-btn" type="submit">
 						Upload

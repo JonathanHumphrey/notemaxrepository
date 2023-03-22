@@ -13,7 +13,8 @@ const UserModal = (props) => {
 	return (
 		<div className="modal-content">
 			<ul>
-				<li onClick={logOut}>Log Out</li>
+				<li onClick={logOut} className="">Log Out</li>
+				<li>Settings</li>
 			</ul>
 			<button className="close-btn" onClick={props.onClose}>
 				x

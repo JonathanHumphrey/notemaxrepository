@@ -26,7 +26,7 @@ const Dash = () => {
 
 	if (user) {
 		return (
-			<div className="container">
+			<div className="dash-container">
 				<div>
 					<FileUpload isOpen={modalOpen} onClose={handleCloseModal} />
 				</div>

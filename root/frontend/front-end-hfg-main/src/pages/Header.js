@@ -4,6 +4,7 @@ import UserModal from "./UserModal";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectUserById } from "../features/usersApiSlice";
+
 const Header = () => {
 	const userId = localStorage.getItem("userId");
 	const user = useSelector((state) => selectUserById(state, userId));

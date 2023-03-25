@@ -56,7 +56,7 @@ const LoginForm = () => {
 					type="password"
 					onChange={changePassword}
 				/>
-				<button type="submit"></button>
+				<button type="submit">Submit</button>
 			</form>
 			<Link to="/dash"> Dashboard</Link>
 		</div>

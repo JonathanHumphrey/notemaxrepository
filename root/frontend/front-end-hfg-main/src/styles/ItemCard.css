@@ -1,0 +1,9 @@
+.item-container{
+    border: solid black;
+    width: 15rem;
+    display: flex;
+    flex-flow: column wrap;
+}
+p{
+    font-size: 1rem;
+}

@@ -1,4 +1,4 @@
-.container{
+.dash-container{
     display: flex;
     flex-direction: column;
 }
@@ -21,6 +21,10 @@
 .section{
     border: solid black;
     margin: 2rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    
 }
 form{
     display: flex;
@@ -28,4 +32,8 @@ form{
     width: 50%;
     margin: auto;
     text-align: left;
+}
+h4{
+    align-self: center;
+    width: 100%;
 }

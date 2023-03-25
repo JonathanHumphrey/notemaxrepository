@@ -1,25 +1,20 @@
+// Asset and Component imports
 import "./styles/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Dash from "./pages/Dash";
 import NewUserForm from "./pages/NewUserForm";
 import LoginForm from "./pages/LoginForm";
+import Header from "./pages/Header";
+
+// React Tools
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
 	return (
 		<div className="App">
-			<header>
-				<div className="left-block">
-					<h2>(Logo)</h2>
-					<h2>Information</h2>
-				</div>
-				<div className="right-block">
-					<h2>Log In</h2>
-					<h2>Help</h2>
-				</div>
-			</header>
 			<BrowserRouter>
+				<Header />
 				<Routes>
 					<Route path="/" element={<Layout />}>
 						<Route index element={<Home />} />

@@ -1,6 +1,8 @@
 import React from "react";
 import "../styles/Dash.css";
 import FileUpload from "./FileUpload";
+import ItemCard from "../components/ItemCard";
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -26,7 +28,7 @@ const Dash = () => {
 
 	if (user) {
 		return (
-			<div className="container">
+			<div className="dash-container">
 				<div>
 					<FileUpload isOpen={modalOpen} onClose={handleCloseModal} />
 				</div>
@@ -41,10 +43,13 @@ const Dash = () => {
 				</div>
 				<div className="content-feed">
 					<h2>Your Categories</h2>
-
 					{user.categories.map((item, index) => (
 						<div className="section" key={index}>
 							<h4>{item}</h4>
+							<ItemCard />
+							<ItemCard />
+							<ItemCard />
+							<br />
 						</div>
 					))}
 				</div>

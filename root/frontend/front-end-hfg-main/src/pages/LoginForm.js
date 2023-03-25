@@ -16,6 +16,7 @@ const LoginForm = () => {
 			//await loginUser({ email, password });
 			const payload = await loginUser({ email, password });
 			localStorage.setItem("userId", payload.data._id);
+			document.location.reload();
 		} catch (error) {}
 	};
 	const changeEmail = (e) => setEmail(e.target.value);
@@ -55,7 +56,7 @@ const LoginForm = () => {
 					type="password"
 					onChange={changePassword}
 				/>
-				<button type="submit"></button>
+				<button type="submit">Submit</button>
 			</form>
 			<Link to="/dash"> Dashboard</Link>
 		</div>

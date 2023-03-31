@@ -8,6 +8,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes.js");
+const fileRoutes = require("./routes/fileRoutes.js")
 
 const app = express();
 dotenv.config();
@@ -21,6 +22,7 @@ app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/api/users", userRoutes);
+app.use("/api/files", fileRoutes);
 // Allows the server to have a basic landing page for development - JH
 app.use("/", express.static(path.join(__dirname, "public")));
 app.use("/", require("./routes/root"));

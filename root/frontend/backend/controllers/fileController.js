@@ -5,6 +5,7 @@ const Grid = require("gridfs-stream")
 const GridFS = Grid("ac-cg3ukqo-shard-00-01.n4odbm8.mongodb.net", mongoose.mongo)
 const asyncHandler = require("express-async-handler")
 
+// This can only accept string data as of now, I haven't been able to connect it to the actual file for storage
 
 const uploadFile = asyncHandler(async (req, res) => {
     const { author, file, date, likes, dislikes, category, comments} = req.body

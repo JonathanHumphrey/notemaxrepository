@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUserById } from "../features/usersApiSlice";
 import { useGetUsersQuery } from "../features/usersApiSlice";
+import { dummyData } from "../static/dummyData"
 
 const Dash = () => {
 	useGetUsersQuery(undefined, {
@@ -26,6 +27,9 @@ const Dash = () => {
 		setModalOpen(false);
 	};
 
+
+	
+	
 	if (user) {
 		return (
 			<div className="dash-container">
@@ -38,20 +42,30 @@ const Dash = () => {
 						<Link> Create Template </Link>
 					</p>
 					<p>
-						<button onClick={handleModalOpen}> Upload Template </button>
+						<button onClick={handleModalOpen} className="styled-link"> Upload Template </button>
 					</p>
 				</div>
 				<div className="content-feed">
 					<h2>Your Categories</h2>
-					{user.categories.map((item, index) => (
-						<div className="section" key={index}>
-							<h4>{item}</h4>
-							<ItemCard />
-							<ItemCard />
-							<ItemCard />
-							<br />
+					{user.categories.map((category, id) => 
+						<div className="user-categories" key={id}>
+							<h4>{category}</h4>
+							<br></br>
+							{dummyData.map((data, index) => (
+								user.categories.includes(data.category) && category === data.category ?
+									<ItemCard 
+										key={index} 
+										author={data.author}
+										file={data.file}
+										date={data.date}
+										likes={data.likes}
+										dislikes={data.dislikes}
+										category={data.category}
+										comments={data.comments}
+									/> : null
+							))}
 						</div>
-					))}
+					)}
 				</div>
 				<div className="user-templates">
 					<h3>User's Templates</h3>
@@ -66,3 +80,11 @@ const Dash = () => {
 };
 
 export default Dash;
+
+/* {user.categories.includes(dummyData.category)?
+	dummyData.map((data, index) =>{
+		<ItemCard author={data.author}/>
+	})
+:
+null
+} */

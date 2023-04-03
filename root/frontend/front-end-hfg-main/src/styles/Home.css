@@ -43,17 +43,15 @@
     margin: auto;
 }
 .styled-link{
-   
-    color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  width: 500px;
-    
+
+    padding: 1rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    margin: .4rem .2rem;
+    cursor: pointer;
+    width: 15rem;
     background: #D9D9D9;
     border-radius: 20px;
 

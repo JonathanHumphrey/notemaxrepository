@@ -3,9 +3,12 @@ import { formatUTCDate } from "../features/formatTime";
 import { useState } from "react";
 import "../styles/FileUpload.css";
 import { Document, Page, pdfjs } from "react-pdf";
+import { useUploadFileMutation } from "../features/fileApiSlice";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-function FileUpload(props) {
+
+const FileUpload = (props) => {
+	const [uploadFile, {isSuccess}] = useUploadFileMutation();
 	const [file, setFile] = useState(null);
 	const userId = localStorage.getItem("userId");
 	const [numPages, setNumPages] = useState(null);
@@ -17,29 +20,43 @@ function FileUpload(props) {
 	const handleFileChange = (event) => {
 		setFile(event.target.files[0]);
 	};
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
-		const formData = new FormData();
+		
+		var pdfData
+		const reader = new FileReader();
+		reader.readAsDataURL(file)
+		try {
+			reader.onloadend = function () {
+				pdfData = reader.result.split(',')[1];
+				console.log(pdfData)
+				console.log(pdfData)
+				setFile(pdfData);
+				let date = new Date();
+				let category = document.getElementById("category").value;
+				let realDate = formatUTCDate(date)
+				var fileBlob = {
+					author: userId,
+					file: pdfData,
+					date: realDate,
+					likes: 0,
+					dislikes: 0,
+					category: category,
+					comments: []
+				}
+				
+				const payload = uploadFile({fileBlob});
+				console.log(payload)
+			}
+			
 
-		formData.append("file", file);
-		const pdfBlob = new Blob([file], { type: "application/pdf" });
-		setFile(pdfBlob);
-		let date = new Date();
-		let category = document.getElementById("category").value;
-		let realDate = formatUTCDate(date)
-		let fileBlob = {
-			author: userId,
-			file: file,
-			date: date,
-			likes: 0,
-			dislikes: 0,
-			category: category,
-			comments: []
+			
+		} catch (error) {
+			console.log(error)
 		}
-		console.log(fileBlob);
 	};
 
-	return (
+	const content = (
 		<div className={props.isOpen ? "modal-container open" : "modal-container"}>
 			<div className="content">
 				<form onSubmit={handleSubmit}>
@@ -69,5 +86,6 @@ function FileUpload(props) {
 			</div>
 		</div>
 	);
+	return content
 }
 export default FileUpload;

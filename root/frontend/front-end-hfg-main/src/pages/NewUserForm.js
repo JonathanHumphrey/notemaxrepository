@@ -86,17 +86,12 @@ const NewUserForm = () => {
 
 	const content = (
 		<>
-			<div className="container">
+			<div className="form-container">
 				<p className={errClass}>{error?.data?.message}</p>
 
 				<form className="form" onSubmit={onSaveUserClicked}>
 					<div className="form__title-row">
 						<h2>New User</h2>
-						<div className="form__action-buttons">
-							<button className="icon-button" title="Save" disabled={!canSave}>
-								Save
-							</button>
-						</div>
 					</div>
 					<label className="form__label" htmlFor="name">
 						name: <span className="nowrap">[3-20 letters]</span>
@@ -135,22 +130,28 @@ const NewUserForm = () => {
 						onChange={onPasswordChanged}
 					/>
 
-					<label className="form__label" htmlFor="roles">
+					<label className="form__label" htmlFor="categories">
 						Pick at least one Category you are interested in:
 					</label>
-					<select
-						id="roles"
-						name="roles"
-						className={`form__select ${validCategoriesClass}`}
-						multiple={true}
-						size="3"
-						value={categories}
-						onChange={onCategoriesChanged}
-					>
-						{options}
-					</select>
+					<div className="select-wrapper">
+						<select
+							id="categories"
+							name="categories"
+							className={`form__select ${validCategoriesClass}`}
+							multiple={true}
+							size="3"
+							value={categories}
+							onChange={onCategoriesChanged}
+						>
+							{options}
+						</select>
+					</div>
+					<div className="form__action-buttons">
+						<button className="btn-group" title="Sign Up" disabled={!canSave}>
+							Sign Up
+						</button>
+					</div>
 				</form>
-				<Link to="/dash"> Dashboard</Link>
 			</div>
 		</>
 	);

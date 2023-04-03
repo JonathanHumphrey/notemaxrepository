@@ -1,8 +1,10 @@
 .item-container{
     border: solid black;
-    width: 15rem;
+    width: 20rem;
     display: flex;
     flex-flow: column wrap;
+    margin: 1rem;
+    border-radius: 1rem;
 }
 p{
     font-size: 1rem;

@@ -1,0 +1,59 @@
+.viewer-container{
+    border: solid black;
+    width: 80%;
+    margin: auto;
+    background-color: aquamarine;
+    padding: 1rem;
+}
+.viewer-content{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.right{
+    display: inherit;
+    flex-direction: column;
+    width: 60%;
+    margin-top: 5.5rem;
+}
+.left{
+    display: inherit;
+    flex-direction: column;
+    width: 75%;
+}
+.ratings{
+    
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    width: 100%;
+}
+.file-info{
+    border: solid black;
+    width: 50rem;
+    height: 50rem;
+}
+.file-slot{
+    border: solid black;
+    width: 40rem;
+    height: 40rem;
+    margin: auto;
+}
+.comment-section{
+    border: solid black;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+textarea{
+    resize: none;
+    width: 30rem;
+    height: 5rem;
+    margin: auto;
+}
+.fa-thumbs-up{
+    font-size: 2.5rem;
+}
+.fa-thumbs-down{
+    font-size: 2.5rem;
+}

@@ -1,10 +1,32 @@
+import React from "react"
+import { Link } from "react-router-dom";
+
+
 import "../styles/ItemCard.css";
 
 const ItemCard = (props) => {
+	//const [data, setData] = useState()
+	const fileObject = {
+		author: props.author,
+		file: props.file,
+		date: props.date,
+		likes: props.likes,
+		dislikes: props.dislikes,
+		category: props.category,
+		comments: props.comments,
+	}
+	//setData(fileObject)
 	return (
-		<div className="item-container">
-			<h3>Item Title</h3>
-			<p>Item Body</p>
+		<div className="item-container" onClick={() => console.log(fileObject)}>
+			<div>
+				<Link className="styled-link" to="/dash/view" state={{data: fileObject}}>
+					View File
+				</Link>
+			</div>
+			
+			<h3>{props.author}</h3>
+			<p>Likes: {props.likes}</p>
+			<p>Dislikes: {props.dislikes}</p>
 		</div>
 	);
 };

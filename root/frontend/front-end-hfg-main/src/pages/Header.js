@@ -1,5 +1,6 @@
 import React from "react";
 import UserModal from "./UserModal";
+import logo from './logo2.png';
 
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -20,12 +21,11 @@ const Header = () => {
 
 	return (
 		<header>
-			<div className="left-block">
-				<h2>(Logo)</h2>
-				<h2>Information</h2>
+			<div className="left-block" >
+			<img style={{ width: "200", height: "200"}} src={logo} />
 			</div>
 			{user ? (
-				<div className="right-block">
+				<div className="right-block" >
 					<h2 id="user" onClick={handleModalOpen}>
 						{user.name}
 					</h2>
@@ -44,3 +44,4 @@ const Header = () => {
 };
 
 export default Header;
+

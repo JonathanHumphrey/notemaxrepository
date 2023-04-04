@@ -10,9 +10,9 @@ const Home = () => {
 			<div className="text">
 				<h1 id="title">NoteMax</h1>
 				<p id="splash-text">
-					Lorem ipsum dolor sit amet consectetur. Aliquam nunc blandit et fusce
-					enim donec nunc cursus. Accumsan vivamus sit morbi id. Tristique
-					malesuada turpis vulputate porta.
+					Welcome to NoteMax, the ultimate note-taking app for all your productivity needs! 
+					Whether you're a student, professional, or just someone who loves to jot down ideas, NoteMax is 
+					here to streamline your note-taking experience like never before.
 				</p>
 				</div>
 				

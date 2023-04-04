@@ -37,4 +37,10 @@ header{
   flex-direction: row;
 }
 
+body {
+  
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+
 

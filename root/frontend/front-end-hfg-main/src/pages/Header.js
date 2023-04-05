@@ -22,7 +22,6 @@ const Header = () => {
 		<header>
 			<div className="left-block">
 				<h2>(Logo)</h2>
-				<h2>Information</h2>
 			</div>
 			{user ? (
 				<div className="right-block">

@@ -4,9 +4,18 @@ import logo from './logo2.png';
 
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useGetUsersQuery } from "../features/usersApiSlice";
 import { selectUserById } from "../features/usersApiSlice";
 
+import logo from "../static/logo.png"
+
 const Header = () => {
+
+	useGetUsersQuery(undefined, {
+		pollingInterval: 60000,
+		refetchOnFocus: true,
+		refetchOnMountOrArgChange: true,
+	});
 	const userId = localStorage.getItem("userId");
 	const user = useSelector((state) => selectUserById(state, userId));
 
@@ -21,8 +30,8 @@ const Header = () => {
 
 	return (
 		<header>
-			<div className="left-block" >
-			<img style={{ width: "200", height: "200"}} src={logo} />
+			<div className="left-block">
+				<img src={logo}></img>
 			</div>
 			{user ? (
 				<div className="right-block" >

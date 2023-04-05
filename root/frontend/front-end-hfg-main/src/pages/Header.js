@@ -3,9 +3,18 @@ import UserModal from "./UserModal";
 
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useGetUsersQuery } from "../features/usersApiSlice";
 import { selectUserById } from "../features/usersApiSlice";
 
+import logo from "../static/logo.png"
+
 const Header = () => {
+
+	useGetUsersQuery(undefined, {
+		pollingInterval: 60000,
+		refetchOnFocus: true,
+		refetchOnMountOrArgChange: true,
+	});
 	const userId = localStorage.getItem("userId");
 	const user = useSelector((state) => selectUserById(state, userId));
 
@@ -21,7 +30,7 @@ const Header = () => {
 	return (
 		<header>
 			<div className="left-block">
-				<h2>(Logo)</h2>
+				<img src={logo}></img>
 				<h2>Information</h2>
 			</div>
 			{user ? (

@@ -3,10 +3,11 @@ import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 import "../styles/FileViewer.css"
 
-
+// COLORS: 060F09, 9767DA, C3B0FC
 const FileViewer = () => {
 	
 		const location = useLocation();
@@ -14,41 +15,36 @@ const FileViewer = () => {
 		console.log(data)
 	
 	const content = (
+		
 		<div className="viewer-container">
 			<div className="viewer-content">
-
 				<div className="left">
-					<h3>{data["author"]}</h3>
 					<div className="file-info">
-						<p>Category: {data.category}</p>
 						<div className="file-slot">
-							<h3>{data['file']}</h3>
+							
 						</div>
 						<p>Published: {data.date}</p>
+						<div className="file-footer">
+							<button>Download</button>
+							<h2 className="author">Author: {data["author"]}</h2>
+						</div>
 					</div>
 				</div>
 				<div className="right">
+					<div className="file-data">
+						<h2>Description</h2>
+						<p>Lorem ipsum dolor sit amet consectetur. Aliquam nunc blandit et fusce
+						enim donec nunc cursus. Accumsan vivamus sit morbi id. Tristique
+						malesuada turpis vulputate porta.
+						</p>
+						<h3>Category: {data.category}</h3>
+					</div>
 					<div className="ratings">
-						<p><FontAwesomeIcon icon={faThumbsUp} /> {data["likes"]}</p>
-						<p><FontAwesomeIcon icon={faThumbsDown} /> {data["dislikes"]}</p>	
-					</div>	
-					<div className="comment-section">
-						{data.comments.map((comment, index) => (
-							<div className="comment">
-								<p><strong>username{index}:</strong></p>
-								<p className="comment-body">{comment}</p>
-							</div>
-						))}
-						<textarea className="comment-box"
-							placeholder="180 Character Limit"
-							required="true"
-							maxlength={180}
-						></textarea>
-						<button>submit</button>
-					</div>	
+						<p className="rating-item"><FontAwesomeIcon icon={faThumbsUp} /> {data["likes"]}</p>
+						<p className="rating-item"><FontAwesomeIcon icon={faThumbsDown} /> {data["dislikes"]}</p>	
+					</div>
 				</div>	
 			</div>
-			
 		</div>
 	);
 	return content;

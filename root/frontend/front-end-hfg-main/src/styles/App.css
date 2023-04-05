@@ -7,10 +7,13 @@
   margin-top: 0;
 }
 .left-block{
-  width: 35%;
-  padding-right: 200px;
+  width: 12%;
+  align-self: flex-start;
   display: inherit;
-  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  background: linear-gradient(0deg, rgba(195, 176, 252, 0) 0%, #C3B0FC 66.47%);
+  
 }
 .right-block{
   width: 30%;
@@ -18,7 +21,7 @@
   display: inherit;
   justify-content: center;
   position: relative;
-  left: 25rem;
+  left: 10rem;
 }
 #user{
   cursor: pointer;
@@ -36,5 +39,9 @@ header{
   display: flex;
   flex-direction: row;
 }
-
+img{
+  width: 265px;
+  height: 150px;
+  margin-left: -2.5rem;
+}
 

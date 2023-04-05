@@ -45,3 +45,11 @@ img{
   margin-left: -2.5rem;
 }
 
+body {
+  
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+
+
+

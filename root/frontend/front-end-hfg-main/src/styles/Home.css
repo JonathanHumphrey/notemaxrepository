@@ -118,3 +118,11 @@ color: #FFFFFF;
 
     color: #FFFFFF;
   }
+
+  .dot {
+    height: 60px;
+    width: 60px;
+    background-color: #9767da;
+    border-radius: 50%;
+    display: inline-block;
+  }

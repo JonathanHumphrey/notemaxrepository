@@ -1,0 +1,128 @@
+#title{
+    font-size: 5rem;
+    margin-bottom: 3rem;
+    margin-top: 5rem;
+}
+#splash-text{
+    font-family: 'Kufam';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 29px;
+    text-align: center;
+    
+}
+.links{
+    display: flex;
+    margin: auto;
+    justify-content: space-around;
+    width: 30%;
+    padding: 20px;
+}
+.container{
+    background-color: white;
+    width: 85vw;
+    margin: auto;
+    margin-top: 3rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.text{
+    
+    width: 60%;
+    min-height: 65vh;
+   
+     padding: 40px;
+}
+.img-placeholder{
+    width: 40%;
+    height: 35rem;
+    text-align: left;
+    background: #D9D9D9;
+}
+.placeholder{
+    margin: auto;
+}
+.styled-link{
+    text-decoration: none;
+    
+    width: 279px;
+    height: 40px;
+    left: 787px;
+    top: 504px;
+background: #9767DA;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 20px;    
+font-family: 'Kufam';
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 35px;
+text-align: center;
+
+}
+.styled-link:visited{
+    color: rgb(255, 255, 255);
+    font-family: 'Kufam';
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 35px;
+text-align: center;
+}
+.styled-link:hover{
+    background-color: #acb4f1;
+    font-family: 'Kufam';
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 35px;
+text-align: center;
+}
+
+.rectangle{
+    /* Rectangle 4 */
+  position: absolute;
+  width: 1512px;
+  height: 350px;
+  left: 0px;
+  top: 510px;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(195, 176, 252, 0) 0%, #C3B0FC 66.47%);
+  }
+  .h1{
+    font-family: 'Verdana';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 100px;
+    line-height: 122px;
+  }
+
+.linkwords{
+
+
+font-family: 'Kufam';
+font-style: normal;
+font-weight: 700;
+font-size: 22px;
+line-height: 29px;
+text-align: center;
+
+color: #FFFFFF;
+
+  }
+  .a{
+
+
+    color: #FFFFFF;
+  }
+
+  .dot {
+    height: 60px;
+    width: 60px;
+    background-color: #9767da;
+    border-radius: 50%;
+    display: inline-block;
+  }

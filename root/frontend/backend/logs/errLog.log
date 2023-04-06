@@ -1,0 +1,1 @@
+20230313	11:11:45	8ddf5b65-d732-430b-9548-79732ebc91f5	ValidationError: User validation failed: name: Path `name` is required.	POST	/api/users	undefined

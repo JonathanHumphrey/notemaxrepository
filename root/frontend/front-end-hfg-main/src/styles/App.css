@@ -1,0 +1,53 @@
+.App {
+  text-align: center;
+  margin-top: 0;
+  min-height: 100vh;
+}
+* {
+  margin-top: 0;
+}
+.left-block{
+  width: 12%;
+  align-self: flex-start;
+  display: inherit;
+  flex-direction: column;
+  height: 100vh;
+  background: linear-gradient(0deg, rgba(195, 176, 252, 0) 0%, #C3B0FC 66.47%);
+  align-items: center;
+
+}
+.right-block{
+  width: 30%;
+  margin: auto;
+  display: inherit;
+  justify-content: center;
+  position: relative;
+  left: 10rem;
+}
+#user{
+  cursor: pointer;
+}
+h3{
+  margin: 2rem;
+}
+h2{
+  margin: 2rem;
+}
+header{
+  width: 100%;
+  background-color: #ffffff;
+  height: 5rem;
+  display: flex;
+  flex-direction: row;
+}
+img{
+  width: 265px;
+  height: 150px;
+  margin-left: -2.5rem;
+}
+
+body {
+  
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+

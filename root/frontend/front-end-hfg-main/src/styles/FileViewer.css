@@ -1,0 +1,107 @@
+.viewer-container{
+    
+    width: 75%;
+    margin: auto;
+    padding: 1rem;
+    display: flex;
+    border-radius: 2rem;
+}
+.viewer-content{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.right{
+    display: inherit;
+    flex-direction: column;
+    width: 50%; 
+    margin: 1rem;
+    border: solid white;
+}
+.left{
+    display: inherit;
+    flex-direction: column;
+    width: 50%;
+    margin: 1rem;
+}
+.ratings{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    width: 100%;
+    margin: auto;
+    align-content: baseline;
+}
+.rating-item{
+    background-color: #C3B0FC;
+    padding: .75rem;
+    width: 10rem;
+    border-radius: 1rem;
+}
+.file-info{
+    
+    width: 35rem;
+    height: auto;
+    margin: auto;
+    
+}
+.file-footer{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+   
+}   
+.file-data{
+    background-color: #C3B0FC;
+    height: 60%;
+}
+.file-slot{
+    
+    width: 100%;
+    height: 30rem;
+    margin: auto;
+    background-color: #C3B0FC;
+}
+button{
+    width: 10rem;
+    height: 4rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: #9767DA;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+}
+button:hover{
+    background-color: #C3B0FC;
+}
+h3{
+    text-align: left;
+}
+h2{
+   
+}
+.author{
+    width: 50%;
+    margin: none;
+    padding: none;
+}
+textarea{
+    resize: none;
+    width: 30rem;
+    height: 5rem;
+    margin: auto;
+}
+
+.fa-thumbs-up{
+    font-size: 2.5rem;
+    
+}
+.fa-thumbs-down{
+    font-size: 2.5rem;
+    
+}

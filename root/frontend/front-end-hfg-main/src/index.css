@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Kufam&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Kufam', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+code {
+  font-family: Verdana, sans-serif;
+}

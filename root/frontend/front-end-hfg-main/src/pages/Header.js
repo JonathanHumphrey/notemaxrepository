@@ -32,12 +32,11 @@ const Header = () => {
 		<header>
 			<div className="left-block">
 				<img style={{
-        
-          height: 100,
-          width: 150,
-		  
-
-        }}src={logo }></img>
+					height: 100,
+					width: 150,
+				}}
+				src={logo }>
+				</img>
 			</div>
 			{user ? (
 				<div className="right-block" >

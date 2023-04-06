@@ -37,7 +37,7 @@
     flex-flow: row wrap;
     justify-content: center;
     margin-right: auto;
-    height: 220px;
+    height: auto;
     align-content: flex-start;
    text-align: left;
 

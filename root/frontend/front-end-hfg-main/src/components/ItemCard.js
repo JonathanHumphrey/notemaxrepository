@@ -20,8 +20,11 @@ const ItemCard = (props) => {
 		<div className="item-container" onClick={() => console.log(fileObject)}>
 			
 			<h3>{props.author}</h3>
-			<div>
-				<Link className="styled-link" to="/dash/view" state={{data: fileObject}}>
+			<p>Likes: {props.likes}</p>
+			<p>Dislikes: {props.dislikes}</p>
+
+			<div className="link-slot">
+				<Link id="file-link" to="/dash/view" state={{data: fileObject}}>
 					View File
 				</Link>
 			</div>

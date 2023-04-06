@@ -1,7 +1,6 @@
 import "../styles/NewUserLogin.css";
 
 import React from "react";
-import { Link } from "react-router-dom";
 import { useAddNewUserMutation } from "../features/usersApiSlice";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -95,20 +94,19 @@ const NewUserForm = () => {
 						<div className="form__title-row">
 							<h2>Sign Up</h2>
 						</div>
-						{/*
-							<label className="form__label" htmlFor="name">
-								Name
-							</label>
-							<input
-								className={`form__input ${validUserClass}`}
-								id="name"
-								name="name"
-								type="text"
-								autoComplete="off"
-								value={name}
-								onChange={onnameChanged}
-							/>
-						*/}
+						<label className="form__label" htmlFor="name">
+							Name
+						</label>
+						<input
+							className={`form__input ${validUserClass}`}
+							id="name"
+							name="name"
+							type="text"
+							autoComplete="off"
+							value={name}
+							onChange={onnameChanged}
+						/>
+						
 						<label className="form__label" htmlFor="email">
 							Username
 						</label>
@@ -132,20 +130,23 @@ const NewUserForm = () => {
 							type="password"
 							value={password}
 							onChange={onPasswordChanged}
+							autoComplete="off"
 						/>
 
 						<label className="form__label" htmlFor="categories">
 							What are you most interested in?
 						</label>
-						<div className="form__row">
+						{ /*
+							<div className="form__row">
 								<button className="btn-group btn-group-select" title="Sign Up" disabled={!canSave}>
 									Notes
 								</button>
 								<button className="btn-group btn-group-select" title="Sign Up" disabled={!canSave}>
 									Templates
 								</button>
-						</div>
-						{/*
+							</div>
+						 */}
+						
 							<div className="select-wrapper">
 								<select
 									id="categories"
@@ -159,7 +160,7 @@ const NewUserForm = () => {
 									{options}
 								</select>
 							</div>
-						*/}
+						
 						<button className="btn-group btn-group-sumbit" title="Sign Up" disabled={!canSave}>
 							Sign Up
 						</button>

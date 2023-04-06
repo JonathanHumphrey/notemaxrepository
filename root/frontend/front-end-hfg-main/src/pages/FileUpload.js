@@ -71,9 +71,11 @@ const FileUpload = (props) => {
 						<p>
 							Page {pageNumber} of {numPages}
 						</p>
+						<label for="category"> Category: </label>
 						<input 
 							type="text"
 							id="category"
+							name="category"
 						/>
 					</div>
 					<button className="sub-btn" type="submit">

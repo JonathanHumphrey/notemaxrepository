@@ -7,6 +7,8 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 import "../styles/FileViewer.css"
 
+
+
 // COLORS: 060F09, 9767DA, C3B0FC
 const FileViewer = () => {
 	
@@ -25,7 +27,7 @@ const FileViewer = () => {
 						</div>
 						<p>Published: {data.date}</p>
 						<div className="file-footer">
-							<button>Download</button>
+							<button className="download-btn">Download</button>
 							<h2 className="author">Author: {data["author"]}</h2>
 						</div>
 					</div>

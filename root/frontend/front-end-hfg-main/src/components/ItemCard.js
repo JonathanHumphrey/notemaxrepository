@@ -18,8 +18,8 @@ const ItemCard = (props) => {
 	//setData(fileObject)
 	return (
 		<div className="item-container" onClick={() => console.log(fileObject)}>
-			<div>
-				<Link className="styled-link" to="/dash/view" state={{data: fileObject}}>
+			<div className="link-slot">
+				<Link id="file-link" to="/dash/view" state={{data: fileObject}}>
 					View File
 				</Link>
 			</div>

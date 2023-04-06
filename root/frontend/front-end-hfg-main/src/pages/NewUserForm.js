@@ -77,81 +77,94 @@ const NewUserForm = () => {
 		);
 	});
 	const errClass = isError ? "errmsg" : "";
-	const validUserClass = !validName ? "form__input--incomplete" : "";
-	const validPwdClass = !validPassword ? "form__input--incomplete" : "";
-	const validEmailClass = !validEmail ? "form__input--incomplete" : "";
+	const validUserClass = !validName ? "form__input--incomplete" : "form__input--complete";
+	const validPwdClass = !validPassword ? "form__input--incomplete" : "form__input--complete";
+	const validEmailClass = !validEmail ? "form__input--incomplete" : "form__input--complete";
 	const validCategoriesClass = !Boolean(categories.length)
 		? "form__input--incomplete"
 		: "";
 
 	const content = (
 		<>
-			<div className="form-container">
-				<p className={errClass}>{error?.data?.message}</p>
+			<div className="page-body">
+				<div className="image">Insert Image Here</div>
+				<div className="form-container">
+					<p className={errClass}>{error?.data?.message}</p>
 
-				<form className="form" onSubmit={onSaveUserClicked}>
-					<div className="form__title-row">
-						<h2>New User</h2>
-					</div>
-					<label className="form__label" htmlFor="name">
-						name: <span className="nowrap">[3-20 letters]</span>
-					</label>
-					<input
-						className={`form__input ${validUserClass}`}
-						id="name"
-						name="name"
-						type="text"
-						autoComplete="off"
-						value={name}
-						onChange={onnameChanged}
-					/>
-					<label className="form__label" htmlFor="email">
-						email: <span className="nowrap">[3-20 letters]</span>
-					</label>
-					<input
-						className={`form__input ${validEmailClass}`}
-						id="email"
-						name="email"
-						type="text"
-						autoComplete="off"
-						value={email}
-						onChange={onEmailChanged}
-					/>
+					<form className="form" onSubmit={onSaveUserClicked}>
+						<div className="form__title-row">
+							<h2>Sign Up</h2>
+						</div>
+						{/*
+							<label className="form__label" htmlFor="name">
+								Name
+							</label>
+							<input
+								className={`form__input ${validUserClass}`}
+								id="name"
+								name="name"
+								type="text"
+								autoComplete="off"
+								value={name}
+								onChange={onnameChanged}
+							/>
+						*/}
+						<label className="form__label" htmlFor="email">
+							Username
+						</label>
+						<input
+							className={`form__input ${validEmailClass}`}
+							id="email"
+							name="email"
+							type="text"
+							autoComplete="off"
+							value={email}
+							onChange={onEmailChanged}
+						/>
 
-					<label className="form__label" htmlFor="password">
-						Password: <span className="nowrap">[4-12 chars incl. !@#$%]</span>
-					</label>
-					<input
-						className={`form__input ${validPwdClass}`}
-						id="password"
-						name="password"
-						type="password"
-						value={password}
-						onChange={onPasswordChanged}
-					/>
+						<label className="form__label" htmlFor="password">
+							Password
+						</label>
+						<input
+							className={`form__input ${validPwdClass}`}
+							id="password"
+							name="password"
+							type="password"
+							value={password}
+							onChange={onPasswordChanged}
+						/>
 
-					<label className="form__label" htmlFor="categories">
-						Pick at least one Category you are interested in:
-					</label>
-					<div className="select-wrapper">
-						<select
-							id="categories"
-							name="categories"
-							className={`form__select ${validCategoriesClass}`}
-							multiple={true}
-							size="3"
-							value={categories}
-							onChange={onCategoriesChanged}
-						>
-							{options}
-						</select>
-					</div>
-					<div className="form__action-buttons">
-						<button className="btn-group" title="Sign Up" disabled={!canSave}>
+						<label className="form__label" htmlFor="categories">
+							What are you most interested in?
+						</label>
+						<div className="form__row">
+								<button className="btn-group btn-group-select" title="Sign Up" disabled={!canSave}>
+									Notes
+								</button>
+								<button className="btn-group btn-group-select" title="Sign Up" disabled={!canSave}>
+									Templates
+								</button>
+						</div>
+						{/*
+							<div className="select-wrapper">
+								<select
+									id="categories"
+									name="categories"
+									className={`form__select ${validCategoriesClass}`}
+									multiple={true}
+									size="3"
+									value={categories}
+									onChange={onCategoriesChanged}
+								>
+									{options}
+								</select>
+							</div>
+						*/}
+						<button className="btn-group btn-group-sumbit" title="Sign Up" disabled={!canSave}>
 							Sign Up
 						</button>
-					</div>
-				</form>
+					</form>
+				</div>
 			</div>
 		</>
 	);

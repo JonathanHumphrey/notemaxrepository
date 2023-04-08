@@ -8,7 +8,10 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUserById } from "../features/usersApiSlice";
 import { useGetUsersQuery } from "../features/usersApiSlice";
+
+// data imported from static to mimic the backend
 import { dummyData } from "../static/dummyData"
+import { userData } from "../static/userData"
 
 const Dash = () => {
 	useGetUsersQuery(undefined, {
@@ -39,9 +42,6 @@ const Dash = () => {
 				<h2>Welcome, {user.name}</h2>
 				<div className="button-group">
 					<p>
-						<Link> Create Template </Link>
-					</p>
-					<p>
 						<button onClick={handleModalOpen} className="styled-link"> Upload Template </button>
 					</p>
 				</div>
@@ -67,10 +67,26 @@ const Dash = () => {
 					)}
 					<div className="user-templates">
 					<h3>User's Templates</h3>
-					<p>
-						This is where templates that the user created will appear, along
-						with their stats
-					</p>
+					{user.categories.map((category, id) => 
+						<div className="user-feed" key={id}>
+						
+							<h4>{category}</h4>
+							<br></br>
+							{dummyData.map((data, index) => (
+								user.categories.includes(data.category) && category === data.category ?
+									<ItemCard 
+										key={index} 
+										author={user.name}
+										file={data.file}
+										date={data.date}
+										likes={data.likes}
+										dislikes={data.dislikes}
+										category={data.category}
+										comments={data.comments}
+									/> : null
+							))}
+						</div>
+					)}
 				</div>
 				</div>
 				

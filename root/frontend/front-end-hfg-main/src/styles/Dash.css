@@ -23,12 +23,16 @@
     background-color: #c3b0FC;
     margin: 3rem;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column wrap;
     justify-content: center;
     margin-right: auto;
-    height: 220px;
-    align-content: flex-start;
-   text-align: left;
+    height: auto;
+    text-align: left;
+}
+.user-feed{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 }
 .user-categories{
     background-color: #c3b0FC;
@@ -39,9 +43,7 @@
     margin-right: auto;
     height: auto;
     align-content: flex-start;
-   text-align: left;
-
-   
+    text-align: left;
 }
 form{
     display: flex;

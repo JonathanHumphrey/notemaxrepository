@@ -27,7 +27,7 @@ app.use("/api/files", fileRoutes);
 app.use("/", express.static(path.join(__dirname, "public")));
 app.use("/", require("./routes/root"));
 
-const PORT = process.env.PORT || 5000;
+const PORT = 4500;
 
 mongoose.connection.once("open", () => {
 	console.log("Connected to MongoDB");

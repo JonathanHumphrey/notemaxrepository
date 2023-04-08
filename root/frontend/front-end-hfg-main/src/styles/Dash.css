@@ -1,6 +1,10 @@
 .dash-container{
     display: flex;
     flex-direction: column;
+    width: 85%;
+    margin-left: auto;
+    margin-bottom: auto;
+  
 }
 .button-group{
     display: flex;
@@ -9,22 +13,37 @@
     margin: auto;
 }
 .content-feed{
-    border: solid black;
+    justify-content: start;
     min-height: 10rem;
     margin: .1rem;
+    flex-wrap: nowrap;
+    align-content: flex-start;
 }
 .user-templates{
-    border: solid black;
-    height: 10rem;
-    margin: .1rem;
+    background-color: #c3b0FC;
+    margin: 3rem;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    margin-right: auto;
+    height: auto;
+    text-align: left;
 }
-.user-categories{
-    border: solid black;
-    margin: 2rem;
+.user-feed{
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    
+}
+.user-categories{
+    background-color: #c3b0FC;
+    margin: 3rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin-right: auto;
+    height: auto;
+    align-content: flex-start;
+    text-align: left;
 }
 form{
     display: flex;
@@ -36,4 +55,6 @@ form{
 h4{
     align-self: center;
     width: 100%;
+    margin-left: 10px;
+    margin-top: 10px;
 }

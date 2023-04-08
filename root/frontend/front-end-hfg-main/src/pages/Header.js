@@ -1,5 +1,6 @@
 import React from "react";
 import UserModal from "./UserModal";
+//import logo from './logo2.png';
 
 
 import { useState, useEffect } from "react";
@@ -31,7 +32,12 @@ const Header = () => {
 	return (
 		<header>
 			<div className="left-block">
-				<img src={logo}></img>
+				<img style={{
+					height: 100,
+					width: 150,
+				}}
+				src={logo }>
+				</img>
 			</div>
 			{user ? (
 				<div className="right-block" >
@@ -53,4 +59,3 @@ const Header = () => {
 };
 
 export default Header;
-

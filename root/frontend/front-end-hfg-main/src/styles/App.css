@@ -13,8 +13,7 @@
   flex-direction: column;
   height: 100vh;
   background: linear-gradient(0deg, rgba(195, 176, 252, 0) 0%, #C3B0FC 66.47%);
-  align-items: center;
-
+  
 }
 .right-block{
   width: 30%;
@@ -50,4 +49,7 @@ body {
   
   overflow-x: hidden; /* Hide horizontal scrollbar */
 }
+
+
+
 

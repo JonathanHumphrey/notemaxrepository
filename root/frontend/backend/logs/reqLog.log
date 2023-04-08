@@ -2027,3 +2027,6 @@
 20230408	10:27:57	74b92843-5de1-4356-bea7-b5388b844664	GET	/api/users	http://localhost:3000
 20230408	10:28:57	91b1236f-b110-4d83-ab7b-10a1b96e328b	GET	/api/users	http://localhost:3000
 20230408	10:29:58	61fd94ba-09c8-49d7-8ad0-06db50f21af3	GET	/api/users	http://localhost:3000
+20230408	10:30:59	cde4319a-3c08-4292-96ff-0a2c99f71b71	GET	/api/users	http://localhost:3000
+20230408	10:32:00	a302e06e-0bfa-45a2-ac7f-5dbff050f8c1	GET	/api/users	http://localhost:3000
+20230408	10:33:06	c253a465-fa74-458f-8fa0-898ae7ae0967	GET	/api/users	http://localhost:3000

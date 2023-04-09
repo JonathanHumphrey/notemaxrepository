@@ -9,6 +9,7 @@
 .page-body{
   display: flex;
   flex-flow: row nowrap;
+  margin-left: 15rem;
 }
 
 .image{
@@ -77,6 +78,7 @@
   font-size: larger;
   margin: auto;
   margin-bottom: 1rem;
+  background-color: #CCBDFF
 }
 
 .form__input--text {

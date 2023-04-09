@@ -15,25 +15,28 @@
 .links{
     display: flex;
     margin: auto;
-    justify-content: space-around;
-    width: 30%;
-    padding: 20px;
+    justify-content: space-between;
+    width: 40%;
+    padding: 1rem;
 }
-.container{
-    background-color: white;
+.home-container{
+    background-color: rgba(255, 255, 255, 0.404);
     width: 85vw;
     margin: auto;
     margin-top: 3rem;
+    margin-left: 15rem;
     padding: 2rem;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    
 }
 
 .text{
     
-    width: 50%;
+    width: 45%;
     min-height: 65vh;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.39);
      padding: 40px;
 }
 .img-placeholder{
@@ -85,12 +88,13 @@
 .rectangle{
     /* Rectangle 4 */
   position: absolute;
-  width: 1512px;
-  height: 350px;
+  width: 100vw;
+  height: 100vh;
   left: 0px;
   top: 510px;
   width: 100%;
   background: linear-gradient(180deg, rgba(195, 176, 252, 0) 0%, #C3B0FC 66.47%);
+  z-index: -1;
   }
   .h1{
     font-family: 'Verdana';

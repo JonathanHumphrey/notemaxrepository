@@ -16,10 +16,12 @@ const fileSchema = new mongoose.Schema(
         },
         likes: {
             type: Number,
+            default: 0,
            // required: true
         },
         dislikes: {
             type: Number,
+            default: 0,
            // required: true
         },
         category: {
@@ -28,6 +30,7 @@ const fileSchema = new mongoose.Schema(
         },
         comments: {
             type: Array,
+            default: [],
         }
     }
 )

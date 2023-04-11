@@ -1,5 +1,8 @@
-
-const { uploadFile, getAllFiles, updateLikeCount,
+const express = require("express");
+const {
+  uploadFile,
+  getAllFiles,
+  updateLikeCount,
 } = require("../controllers/fileController");
 const fileController = require("../controllers/fileController");
 const router = express.Router();

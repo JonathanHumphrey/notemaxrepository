@@ -4,14 +4,14 @@ import FileUpload from "./FileUpload";
 import ItemCard from "../components/ItemCard";
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+
 import { useSelector } from "react-redux";
 import { selectUserById } from "../features/usersApiSlice";
 import { useGetUsersQuery } from "../features/usersApiSlice";
 
 // data imported from static to mimic the backend
-import { dummyData } from "../static/dummyData"
-import { userData } from "../static/userData"
+import { dummyData } from "../static/dummyData";
+import { userData } from "../static/userData";
 
 const Dash = () => {
 	useGetUsersQuery(undefined, {
@@ -30,9 +30,6 @@ const Dash = () => {
 		setModalOpen(false);
 	};
 
-
-	
-	
 	if (user) {
 		return (
 			<div className="dash-container">
@@ -42,18 +39,22 @@ const Dash = () => {
 				<h2>Welcome, {user.name}</h2>
 				<div className="button-group">
 					<p>
-						<button onClick={handleModalOpen} className="styled-link"> Upload Template </button>
+						<button onClick={handleModalOpen} className="styled-link">
+							{" "}
+							Upload Template{" "}
+						</button>
 					</p>
 				</div>
 				<div className="content-feed">
-					{user.categories.map((category, id) => 
+					{user.categories.map((category, id) => (
 						<div className="user-categories" key={id}>
 							<h4>{category}</h4>
 							<br></br>
-							{dummyData.map((data, index) => (
-								user.categories.includes(data.category) && category === data.category ?
-									<ItemCard 
-										key={index} 
+							{dummyData.map((data, index) =>
+								user.categories.includes(data.category) &&
+								category === data.category ? (
+									<ItemCard
+										key={index}
 										author={data.author}
 										file={data.file}
 										date={data.date}
@@ -61,35 +62,36 @@ const Dash = () => {
 										dislikes={data.dislikes}
 										category={data.category}
 										comments={data.comments}
-									/> : null
-							))}
+									/>
+								) : null
+							)}
 						</div>
-					)}
+					))}
 					<div className="user-templates">
-					<h3>User's Templates</h3>
-					{user.categories.map((category, id) => 
-						<div className="user-feed" key={id}>
-						
-							<h4>{category}</h4>
-							<br></br>
-							{dummyData.map((data, index) => (
-								user.categories.includes(data.category) && category === data.category ?
-									<ItemCard 
-										key={index} 
-										author={user.name}
-										file={data.file}
-										date={data.date}
-										likes={data.likes}
-										dislikes={data.dislikes}
-										category={data.category}
-										comments={data.comments}
-									/> : null
-							))}
-						</div>
-					)}
+						<h3>User's Templates</h3>
+						{user.categories.map((category, id) => (
+							<div className="user-feed" key={id}>
+								<h4>{category}</h4>
+								<br></br>
+								{dummyData.map((data, index) =>
+									user.categories.includes(data.category) &&
+									category === data.category ? (
+										<ItemCard
+											key={index}
+											author={user.name}
+											file={data.file}
+											date={data.date}
+											likes={data.likes}
+											dislikes={data.dislikes}
+											category={data.category}
+											comments={data.comments}
+										/>
+									) : null
+								)}
+							</div>
+						))}
+					</div>
 				</div>
-				</div>
-				
 			</div>
 		);
 	}

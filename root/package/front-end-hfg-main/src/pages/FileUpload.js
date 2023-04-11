@@ -4,56 +4,70 @@ import { useState } from "react";
 import "../styles/FileUpload.css";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useUploadFileMutation } from "../features/fileApiSlice";
+import { CATEGORIES } from "../config/categories";
+
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-
 const FileUpload = (props) => {
-	const [uploadFile, {isSuccess}] = useUploadFileMutation();
-	const [file, setFile] = useState(null);
-	const userId = localStorage.getItem("userId");
 	const [numPages, setNumPages] = useState(null);
 	const [pageNumber, setPageNumber] = useState(1);
 
+	const userId = localStorage.getItem("userId");
+	const [uploadFile, { isSuccess }] = useUploadFileMutation();
+	const [file, setFile] = useState("");
+	const [categories, setCategories] = useState("");
+	const [author, setAuthor] = useState("");
+	const [formattedDate, setDate] = useState("");
+	const [likes, setLikes] = useState(0);
+	const [dislikes, setDislikes] = useState(0);
+
+	const options = Object.values(CATEGORIES).map((category) => {
+		return (
+			<option key={category} value={category}>
+				{" "}
+				{category}
+			</option>
+		);
+	});
+	const onCategoriesChanged = (e) => {
+		console.log(categories);
+		setCategories(e.target.value);
+	};
+
 	function onDocumentLoadSuccess({ numPages }) {
 		setNumPages(numPages);
-	};
+	}
 	const handleFileChange = (event) => {
 		setFile(event.target.files[0]);
 	};
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		
-		var pdfData
-		const reader = new FileReader();
-		reader.readAsDataURL(file)
-		try {
-			reader.onloadend = function () {
-				pdfData = reader.result.split(',')[1];
-				console.log(pdfData)
-				console.log(pdfData)
-				setFile(pdfData);
-				let date = new Date();
-				let category = document.getElementById("category").value;
-				let realDate = formatUTCDate(date)
-				var fileBlob = {
-					author: userId,
-					file: pdfData,
-					date: realDate,
-					likes: 0,
-					dislikes: 0,
-					category: category,
-					comments: []
-				}
-				
-				const payload = uploadFile({fileBlob});
-				console.log(payload)
-			}
-			
 
-			
-		} catch (error) {
-			console.log(error)
+		let date = new Date();
+		let realDate = formatUTCDate(date);
+		setLikes(0);
+		setDislikes(0);
+		console.log(categories);
+
+		console.log(file);
+		const renamedFile = new File([file], userId + "-" + file.name, {
+			type: file.type,
+		});
+
+		console.log(renamedFile);
+		const formData = new FormData();
+		formData.append("file", renamedFile);
+		formData.append("author", userId);
+		formData.append("date", realDate);
+		formData.append("likes", likes);
+		formData.append("dislikes", dislikes);
+		formData.append("category", categories);
+
+		for (var key of formData.entries()) {
+			console.log(key[0] + ", " + key[1]);
 		}
+		const payload = await uploadFile({ formData });
+		console.log(payload);
 	};
 
 	const content = (
@@ -71,12 +85,20 @@ const FileUpload = (props) => {
 						<p>
 							Page {pageNumber} of {numPages}
 						</p>
-						<label for="category"> Category: </label>
-						<input 
-							type="text"
-							id="category"
-							name="category"
-						/>
+						<label htmlFor="category"> Category: </label>
+						<div className="select-wrapper">
+							<select
+								id="categories"
+								name="categories"
+								className={`form__select $`}
+								multiple={false}
+								size="3"
+								value={categories}
+								onChange={onCategoriesChanged}
+							>
+								{options}
+							</select>
+						</div>
 					</div>
 					<button className="sub-btn" type="submit">
 						Upload
@@ -88,6 +110,6 @@ const FileUpload = (props) => {
 			</div>
 		</div>
 	);
-	return content
-}
+	return content;
+};
 export default FileUpload;

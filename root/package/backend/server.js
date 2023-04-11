@@ -7,8 +7,12 @@ const corsOptions = require("./config/corsOptions");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const mongoose = require("mongoose");
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 const userRoutes = require("./routes/userRoutes.js");
-const fileRoutes = require("./routes/fileRoutes.js")
+const fileRoutes = require("./routes/fileRoutes.js");
+
+const { uploadFile } = require("./controllers/fileController");
 
 const app = express();
 dotenv.config();
@@ -26,6 +30,8 @@ app.use("/api/files", fileRoutes);
 // Allows the server to have a basic landing page for development - JH
 app.use("/", express.static(path.join(__dirname, "public")));
 app.use("/", require("./routes/root"));
+
+app.post("/upload", uploadFile);
 
 const PORT = 4500;
 

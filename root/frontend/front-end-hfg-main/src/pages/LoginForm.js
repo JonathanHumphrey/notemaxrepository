@@ -6,12 +6,12 @@ import { useNavigate } from "react-router-dom";
 import "../styles/NewUserLogin.css";
 
 const LoginForm = () => {
-	const [loginUser, { isSuccess}] = useLoginMutation();
+	const [loginUser, { isSuccess }] = useLoginMutation();
 	const navigate = useNavigate();
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [validUser, setValidUser] = useState(true)
+	const [validUser, setValidUser] = useState(true);
 
 	const submit = async (e) => {
 		e.preventDefault();
@@ -21,13 +21,11 @@ const LoginForm = () => {
 			localStorage.setItem("userId", payload.data._id);
 			document.location.reload();
 		} catch (error) {
-			console.log(error)
-			setValidUser(false)
+			console.log(error);
+			setValidUser(false);
 		}
 	};
-	
 
-	
 	const changeEmail = (e) => setEmail(e.target.value);
 	const changePassword = (e) => setPassword(e.target.value);
 	useEffect(() => {
@@ -38,7 +36,7 @@ const LoginForm = () => {
 		}
 	}, [isSuccess, navigate]);
 
-	const invalidClass = !validUser ? "invalid" : "" 
+	const invalidClass = !validUser ? "invalid" : "";
 
 	const content = (
 		<div className="form-container">
@@ -46,9 +44,9 @@ const LoginForm = () => {
 				<div className="form__title-row">
 					<h2>Login</h2>
 				</div>
-				{!validUser ? 
-				<p className={`help-text ${invalidClass}`}>Invalid Credentials</p>:
-				null}
+				{!validUser ? (
+					<p className={`help-text ${invalidClass}`}>Invalid Credentials</p>
+				) : null}
 				<label className="form__label" htmlFor="email">
 					email: <span className="nowrap"></span>
 				</label>
@@ -71,11 +69,13 @@ const LoginForm = () => {
 					type="password"
 					onChange={changePassword}
 				/>
-				<button type="submit" className="btn-group">Submit</button>
+				<button type="submit" className="btn-group btn-group-sumbit">
+					Submit
+				</button>
 			</form>
 		</div>
 	);
-	return content
+	return content;
 };
 
 export default LoginForm;

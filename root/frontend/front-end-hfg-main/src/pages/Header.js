@@ -32,15 +32,27 @@ const Header = () => {
 	return (
 		<header>
 			<div className="left-block">
+			<br></br>
+				<div className="center-image">
 				<img style={{
 					height: 100,
-					width: 150,
+					width: 170,
 				}}
-				src={logo }>
+				src={logo }  >
 				</img>
+				</div>
+				<br></br>
+				<br></br>
+				<br></br>
+				<h5>Home</h5>
+				<h5>Your Notes</h5>
+				<h5>Templates</h5>
 			</div>
 			{user ? (
 				<div className="right-block" >
+				    <br></br>
+					<br></br>
+
 					<h2 id="user" onClick={handleModalOpen}>
 						{user.name}
 					</h2>
@@ -50,6 +62,8 @@ const Header = () => {
 				</div>
 			) : (
 				<div className="right-block">
+					 <br></br>
+					<br></br>
 					<h2>Log In</h2>
 					<h2>Help</h2>
 				</div>

@@ -8,6 +8,11 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectUserById } from "../features/usersApiSlice";
 import { useGetUsersQuery } from "../features/usersApiSlice";
+import {
+	selectAllFiles,
+	selectFileById,
+	useGetFilesQuery,
+} from "../features/fileApiSlice";
 
 // data imported from static to mimic the backend
 import { dummyData } from "../static/dummyData";
@@ -19,9 +24,25 @@ const Dash = () => {
 		refetchOnFocus: true,
 		refetchOnMountOrArgChange: true,
 	});
+	useGetFilesQuery(undefined, {
+		refetchOnFocus: true,
+		refetchOnMountOrArgChange: true,
+	});
 	const userId = localStorage.getItem("userId");
 	const user = useSelector((state) => selectUserById(state, userId));
 
+	// TEST AREA
+	const [pdfUrl, setUrl] = useState(null);
+	const files = useSelector((state) => selectAllFiles(state));
+	const getPdf = async () => {
+		console.log(files[24]);
+		const blob = new Blob([files[24].file.path], { type: "application/pdf" });
+		const url = URL.createObjectURL(blob);
+		setUrl(url);
+		console.log(url);
+	};
+
+	// END TEST AREA
 	const [modalOpen, setModalOpen] = useState(false);
 	const handleModalOpen = () => {
 		setModalOpen(true);
@@ -34,6 +55,14 @@ const Dash = () => {
 		return (
 			<div className="dash-container">
 				<div>
+					<button onClick={getPdf}>View PDF</button>
+					<a
+						href={pdfUrl}
+						download="file.pdf"
+						onClick={() => URL.revokeObjectURL(pdfUrl)}
+					>
+						Download PDF
+					</a>
 					<FileUpload isOpen={modalOpen} onClose={handleCloseModal} />
 				</div>
 				<h2>Welcome, {user.name}</h2>

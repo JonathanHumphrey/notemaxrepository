@@ -7,15 +7,20 @@ const initialState = filesAdapter.getInitialState();
 export const fileApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		getFiles: builder.query({
-			query: () => "api/files",
+			query: () => ({
+				url: "api/files",
+				method: "GET",
+				//responseType: "blob",
+			}),
 			validateStatus: (response, result) => {
 				return response.status === 200 && !result.isError;
 			},
 			transformResponse: (responseData) => {
-				return responseData.map((file) => {
+				const loadedFiles = responseData.map((file) => {
 					file.id = file._id;
 					return file;
 				});
+				return filesAdapter.setAll(initialState, loadedFiles);
 			},
 		}),
 		uploadFile: builder.mutation({

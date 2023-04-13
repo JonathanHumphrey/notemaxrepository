@@ -1,11 +1,11 @@
 const File = require("../models/File");
 const fs = require("fs");
 const mongoose = require("mongoose");
-const Grid = require("gridfs-stream");
+/* const Grid = require("gridfs-stream");
 const GridFS = Grid(
 	"ac-cg3ukqo-shard-00-01.n4odbm8.mongodb.net",
 	mongoose.mongo
-);
+); */
 const asyncHandler = require("express-async-handler");
 
 const multer = require("multer");
@@ -30,18 +30,21 @@ const uploadFile = asyncHandler(async (req, res) => {
 		},
 	}).single("file");
 
-	// Call the Multer middleware to handle the file upload
+	// Calls Multer middleware to handle the file upload
 	upload(req, res, (err) => {
 		if (err) {
 			console.error(err);
 			return res.status(400).send({ message: err.message });
 		}
 
-		// Here you can access the uploaded file via req.file
 		const file = req.file;
 		const fileData = req.body;
+		console.log(file);
+		const binary = fs.readFileSync(file.path);
+		file.path = binary;
+		console.log(file);
 
-		// The rest of your code to handle the uploaded file data goes here
+		// File storage handling
 		const fileForUpload = File.create({
 			author: fileData.author,
 			file: file,

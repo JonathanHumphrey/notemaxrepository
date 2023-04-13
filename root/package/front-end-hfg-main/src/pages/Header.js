@@ -29,8 +29,10 @@ const Header = () => {
 		setOpen(false);
 	};
 
+
 	return (
 		<header>
+			{user ? (
 			<div className="left-block">
 			<br></br>
 				<div className="center-image">
@@ -48,6 +50,7 @@ const Header = () => {
 				<h5>Your Notes</h5>
 				<h5>Templates</h5>
 			</div>
+			):(<div className = "left-blockNotlogged" ></div>)}
 			{user ? (
 				<div className="right-block" >
 				    <br></br>
@@ -62,7 +65,7 @@ const Header = () => {
 				</div>
 			) : (
 				<div className="right-block">
-					 <br></br>
+					<br></br>
 					<br></br>
 					<h2>Log In</h2>
 					<h2>Help</h2>

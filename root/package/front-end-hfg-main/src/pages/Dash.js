@@ -18,6 +18,11 @@ import {
 import { dummyData } from "../static/dummyData";
 import { userData } from "../static/userData";
 
+import FileSaver from "file-saver"
+window.Buffer = window.Buffer || require("buffer").Buffer; 
+
+
+
 const Dash = () => {
 	useGetUsersQuery(undefined, {
 		pollingInterval: 60000,
@@ -35,11 +40,15 @@ const Dash = () => {
 	const [pdfUrl, setUrl] = useState(null);
 	const files = useSelector((state) => selectAllFiles(state));
 	const getPdf = async () => {
-		console.log(files[24]);
-		const blob = new Blob([files[24].file.path], { type: "application/pdf" });
+		console.log(files);
+		const path = files[27].file.path
+		var buffer = Buffer.from(path, "base64");
+
+		const blob = new Blob([buffer], { type: "application/pdf" });
 		const url = URL.createObjectURL(blob);
+		FileSaver.saveAs(blob, "file.pdf")
 		setUrl(url);
-		console.log(url);
+		console.log(pdfUrl);
 	};
 
 	// END TEST AREA

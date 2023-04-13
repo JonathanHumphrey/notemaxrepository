@@ -39,7 +39,6 @@ const uploadFile = asyncHandler(async (req, res) => {
 
 		const file = req.file;
 		const fileData = req.body;
-		console.log(file);
 		const binary = fs.readFileSync(file.path);
 		file.path = binary;
 		console.log(file);
@@ -62,7 +61,6 @@ const uploadFile = asyncHandler(async (req, res) => {
 				likes: fileForUpload.likes,
 				dislikes: fileForUpload.dislikes,
 				category: fileForUpload.category,
-				comments: fileForUpload.comments,
 			});
 		} else {
 			return res.status(400).json({ message: "upload Failed" });
@@ -107,7 +105,9 @@ const getAllFiles = asyncHandler(async (req, res) => {
 	if (!files?.length) {
 		return res.status(400).json({ message: "No Files Found" });
 	}
-	res.json(files);
+	res.set('Content-Type', 'application/pdf');
+	res.send(files)
+	
 });
 module.exports = {
 	uploadFile,

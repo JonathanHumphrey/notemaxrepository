@@ -4,6 +4,8 @@ import { useState } from "react";
 import "../styles/FileUpload.css";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useUploadFileMutation } from "../features/fileApiSlice";
+import { useSelector } from "react-redux";
+import { selectUserById } from "../features/usersApiSlice";
 import { CATEGORIES } from "../config/categories";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -13,6 +15,7 @@ const FileUpload = (props) => {
 	const [pageNumber, setPageNumber] = useState(1);
 
 	const userId = localStorage.getItem("userId");
+	const user = useSelector((state) => selectUserById(state, userId));
 	const [uploadFile, { isSuccess }] = useUploadFileMutation();
 	const [file, setFile] = useState("");
 	const [categories, setCategories] = useState("");
@@ -58,6 +61,7 @@ const FileUpload = (props) => {
 		const formData = new FormData();
 		formData.append("file", renamedFile);
 		formData.append("author", userId);
+		formData.append("username", user.name);
 		formData.append("date", realDate);
 		formData.append("likes", likes);
 		formData.append("dislikes", dislikes);

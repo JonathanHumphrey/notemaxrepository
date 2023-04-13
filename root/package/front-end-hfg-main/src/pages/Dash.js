@@ -18,10 +18,8 @@ import {
 import { dummyData } from "../static/dummyData";
 import { userData } from "../static/userData";
 
-import FileSaver from "file-saver"
-window.Buffer = window.Buffer || require("buffer").Buffer; 
-
-
+import FileSaver from "file-saver";
+window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const Dash = () => {
 	useGetUsersQuery(undefined, {
@@ -39,14 +37,15 @@ const Dash = () => {
 	// TEST AREA
 	const [pdfUrl, setUrl] = useState(null);
 	const files = useSelector((state) => selectAllFiles(state));
+
 	const getPdf = async () => {
 		console.log(files);
-		const path = files[27].file.path
+		const path = files[27].file.path;
 		var buffer = Buffer.from(path, "base64");
 
 		const blob = new Blob([buffer], { type: "application/pdf" });
 		const url = URL.createObjectURL(blob);
-		FileSaver.saveAs(blob, "file.pdf")
+		FileSaver.saveAs(blob, "file.pdf");
 		setUrl(url);
 		console.log(pdfUrl);
 	};
@@ -64,14 +63,6 @@ const Dash = () => {
 		return (
 			<div className="dash-container">
 				<div>
-					<button onClick={getPdf}>View PDF</button>
-					<a
-						href={pdfUrl}
-						download="file.pdf"
-						onClick={() => URL.revokeObjectURL(pdfUrl)}
-					>
-						Download PDF
-					</a>
 					<FileUpload isOpen={modalOpen} onClose={handleCloseModal} />
 				</div>
 				<h2>Welcome, {user.name}</h2>
@@ -88,18 +79,19 @@ const Dash = () => {
 						<div className="user-categories" key={id}>
 							<h4>{category}</h4>
 							<br></br>
-							{dummyData.map((data, index) =>
+							{files.map((data, index) =>
 								user.categories.includes(data.category) &&
 								category === data.category ? (
 									<ItemCard
 										key={index}
+										id={data._id}
 										author={data.author}
+										username={data.username}
 										file={data.file}
 										date={data.date}
 										likes={data.likes}
 										dislikes={data.dislikes}
 										category={data.category}
-										comments={data.comments}
 									/>
 								) : null
 							)}
@@ -111,12 +103,15 @@ const Dash = () => {
 							<div className="user-feed" key={id}>
 								<h4>{category}</h4>
 								<br></br>
-								{dummyData.map((data, index) =>
+								{files.map((data, index) =>
 									user.categories.includes(data.category) &&
-									category === data.category ? (
+									category === data.category &&
+									userId === data.author ? (
 										<ItemCard
 											key={index}
-											author={user.name}
+											id={data._id}
+											author={userId}
+											username={user.name}
 											file={data.file}
 											date={data.date}
 											likes={data.likes}

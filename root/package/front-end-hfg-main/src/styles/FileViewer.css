@@ -39,6 +39,15 @@
     width: 10rem;
     border-radius: 1rem;
 }
+.like-button{
+    background-color: #C3B0FC;
+    padding: .75rem;
+    width: 10rem;
+    border-radius: 1rem;
+}
+.like-button.liked{
+    background-color: #03a762;
+}
 .file-info{
     
     width: 35rem;
@@ -102,3 +111,16 @@ textarea{
     font-size: 2.5rem;
     
 }
+.react-pdf__Page__canvas {
+    margin: auto;
+    padding: 1rem;
+    width: 350px !important;
+    height: 400px !important;
+}
+.react-pdf__Page__textContent.textLayer{
+    display: none;
+}
+.react-pdf__Page__annotations.annotationLayer{
+    display: none;
+}
+

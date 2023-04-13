@@ -46,6 +46,7 @@ const uploadFile = asyncHandler(async (req, res) => {
 		// File storage handling
 		const fileForUpload = File.create({
 			author: fileData.author,
+			username: fileData.username,
 			file: file,
 			date: fileData.date,
 			likes: fileData.likes,
@@ -55,7 +56,9 @@ const uploadFile = asyncHandler(async (req, res) => {
 		if (fileForUpload) {
 			console.log(fileForUpload);
 			res.status(201).json({
+				_id: fileForUpload._id,
 				author: fileForUpload.author,
+				username: fileData.username,
 				file: fileForUpload.file,
 				date: fileForUpload.date,
 				likes: fileForUpload.likes,
@@ -68,12 +71,13 @@ const uploadFile = asyncHandler(async (req, res) => {
 	});
 });
 const updateLikeCount = asyncHandler(async (req, res) => {
-	const file = await File.findById(req.params.id);
+	console.log("here");
+	const file = await File.findById(req.body.id);
 
 	if (file) {
-		file.likes = file.likes + 1;
+		file.likes = req.body.likes;
 		const updatedFile = await file.save();
-		console.log("New likes = " + file.likes + 1);
+		console.log("New likes = " + req.params.likes);
 		res.json(updatedFile);
 	} else {
 		res.status(404);
@@ -105,9 +109,8 @@ const getAllFiles = asyncHandler(async (req, res) => {
 	if (!files?.length) {
 		return res.status(400).json({ message: "No Files Found" });
 	}
-	res.set('Content-Type', 'application/pdf');
-	res.send(files)
-	
+	res.set("Content-Type", "application/pdf");
+	res.send(files);
 });
 module.exports = {
 	uploadFile,

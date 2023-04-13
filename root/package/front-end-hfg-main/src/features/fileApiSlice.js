@@ -30,10 +30,24 @@ export const fileApiSlice = apiSlice.injectEndpoints({
 				body: formData,
 			}),
 		}),
+		updateLikes: builder.mutation({
+			query: (fileId, likes) => ({
+				url: "/like",
+				method: "PATCH",
+				body: {
+					id: fileId,
+					likes: likes,
+				},
+			}),
+		}),
 	}),
 });
 
-export const { useUploadFileMutation, useGetFilesQuery } = fileApiSlice;
+export const {
+	useUploadFileMutation,
+	useGetFilesQuery,
+	useUpdateLikesMutation,
+} = fileApiSlice;
 
 export const selectFileResult = fileApiSlice.endpoints.getFiles.select();
 

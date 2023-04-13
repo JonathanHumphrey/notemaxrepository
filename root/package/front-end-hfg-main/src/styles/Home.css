@@ -1,43 +1,44 @@
 #title{
     font-size: 5rem;
     margin-bottom: 3rem;
-    margin-top: 5rem;
 }
+
+
 #splash-text{
     font-family: 'Kufam';
     font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
+    font-weight: 200;
+    font-size: 20px;
     line-height: 29px;
-    text-align: center;
     
+  
 }
 .links{
     display: flex;
     margin: auto;
-    justify-content: space-between;
-    width: 40%;
-    padding: 1rem;
+    justify-content: space-around;
+    width: 60%;
+    padding: 30px;
+
 }
-.home-container{
-    background-color: rgba(255, 255, 255, 0.404);
+.container{
+    background-color: white;
     width: 85vw;
     margin: auto;
     margin-top: 3rem;
-    margin-left: 15rem;
     padding: 2rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    
+    justify-content: center;
+
 }
 
 .text{
-    
-    width: 45%;
-    min-height: 65vh;
-    background-color: rgba(255, 255, 255, 0.39);
-     padding: 40px;
+
+    width: 65%;
+    justify-content: center;
+   
 }
 .img-placeholder{
     width: 40%;
@@ -50,51 +51,50 @@
 }
 .styled-link{
     text-decoration: none;
-    color: white;
+    
     width: 279px;
     height: 40px;
     left: 787px;
     top: 504px;
-    background: #9767DA;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;    
-    font-family: 'Kufam';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 35px;
-    text-align: center;
+background: #9767DA;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 20px;    
+font-family: 'Kufam';
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 35px;
+text-align: center;
 
 }
 .styled-link:visited{
     color: rgb(255, 255, 255);
     font-family: 'Kufam';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 35px;
-    text-align: center;
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 35px;
+text-align: center;
 }
 .styled-link:hover{
     background-color: #acb4f1;
     font-family: 'Kufam';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 35px;
-    text-align: center;
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 35px;
+text-align: center;
 }
 
 .rectangle{
     /* Rectangle 4 */
   position: absolute;
-  width: 100vw;
-  height: 100vh;
+  width: 1512px;
+  height: 350px;
   left: 0px;
   top: 510px;
   width: 100%;
   background: linear-gradient(180deg, rgba(195, 176, 252, 0) 0%, #C3B0FC 66.47%);
-  z-index: -1;
   }
   .h1{
     font-family: 'Verdana';

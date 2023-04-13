@@ -73,7 +73,7 @@ const Header = () => {
 				<div className="right-block">
 					<br></br>
 					<br></br>
-					<Link to="/dash">
+					<Link to="/login">
 					<h2>Log In</h2>
 					</Link>
 					<Link to="https://www.youtube.com/watch?v=rRPQs_kM_nw&t=7s&ab_channel=10HoursMovies">

@@ -9,6 +9,7 @@ import { useGetUsersQuery } from "../features/usersApiSlice";
 import { selectUserById } from "../features/usersApiSlice";
 
 import logo from "../static/logo.png"
+import { Link } from "react-router-dom";
 
 const Header = () => {
 
@@ -34,18 +35,24 @@ const Header = () => {
 			<div className="left-block">
 			<br></br>
 				<div className="center-image">
-				<img style={{
-					height: 100,
-					width: 170,
-				}}
-				src={logo }  >
-				</img>
+					<Link to="/">
+						<img style={{
+							height: 100,
+							width: 170,
+						}}
+							src={logo }  >
+						</img>
+					</Link>
 				</div>
 				<br></br>
 				<br></br>
 				<br></br>
-				<h5>Home</h5>
-				<h5>Your Notes</h5>
+				<Link to="/">
+					<h5>Home</h5>
+				</Link>
+				<Link to="dash">
+					<h5>Your Notes</h5>
+				</Link>
 				<h5>Templates</h5>
 			</div>
 			{user ? (
@@ -64,7 +71,9 @@ const Header = () => {
 				<div className="right-block">
 					 <br></br>
 					<br></br>
-					<h2>Log In</h2>
+					<Link to="/login">
+						<h2>Log In</h2>
+					</Link>
 					<h2>Help</h2>
 				</div>
 			)}

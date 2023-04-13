@@ -1,13 +1,15 @@
 import React from "react";
 import "../styles/Dash.css";
 import FileUpload from "./FileUpload";
+import UpdateTemplate from "./UpdateTemplate";
+
 import ItemCard from "../components/ItemCard";
 
 import { useState } from "react";
-
 import { useSelector } from "react-redux";
 import { selectUserById } from "../features/usersApiSlice";
 import { useGetUsersQuery } from "../features/usersApiSlice";
+import { ModalProvider, ModalContext, ModalRoot } from 'react-multi-modal';
 
 // data imported from static to mimic the backend
 import { dummyData } from "../static/dummyData";
@@ -22,6 +24,8 @@ const Dash = () => {
 	const userId = localStorage.getItem("userId");
 	const user = useSelector((state) => selectUserById(state, userId));
 
+	{/* From previous modal opening settings, can delete now if needed - Lucas */}
+	{/*
 	const [modalOpen, setModalOpen] = useState(false);
 	const handleModalOpen = () => {
 		setModalOpen(true);
@@ -29,21 +33,26 @@ const Dash = () => {
 	const handleCloseModal = () => {
 		setModalOpen(false);
 	};
+	*/}
 
 	if (user) {
 		return (
 			<div className="dash-container">
-				<div>
-					<FileUpload isOpen={modalOpen} onClose={handleCloseModal} />
-				</div>
 				<h2>Welcome, {user.name}</h2>
-				<div className="button-group">
-					<p>
-						<button onClick={handleModalOpen} className="styled-link">
-							{" "}
-							Upload Template{" "}
-						</button>
-					</p>
+				<div className="template-container">
+					<ModalProvider>
+						<ModalContext.Consumer>
+							{({ showModal, hideModal }) => (
+							<>
+								<div className="button-group">
+									<button onClick={() =>  showModal({ component: UpdateTemplate})}>Update Template Preferences</button>
+									<button onClick={() => showModal({ component: FileUpload })}>Upload Template</button>
+								</div>
+								<ModalRoot />
+							</>
+							)}
+						</ModalContext.Consumer>
+					</ModalProvider>
 				</div>
 				<div className="content-feed">
 					{user.categories.map((category, id) => (

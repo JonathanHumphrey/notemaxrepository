@@ -2,7 +2,7 @@ import React from "react";
 import UserModal from "./UserModal";
 //import logo from './logo2.png';
 
-
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useGetUsersQuery } from "../features/usersApiSlice";
@@ -30,8 +30,10 @@ const Header = () => {
 		setOpen(false);
 	};
 
+
 	return (
 		<header>
+			{user ? (
 			<div className="left-block">
 			<br></br>
 				<div className="center-image">
@@ -47,14 +49,17 @@ const Header = () => {
 				<br></br>
 				<br></br>
 				<br></br>
-				<Link to="/">
-					<h5>Home</h5>
+				<Link to="/dash">
+				<h5>Home</h5>
 				</Link>
-				<Link to="dash">
-					<h5>Your Notes</h5>
+				<Link to="/dash">
+				<h5>Your Notes</h5>
 				</Link>
+				<Link to="/dash">
 				<h5>Templates</h5>
+				</Link>
 			</div>
+			):(<div className = "left-blockNotlogged" ></div>)}
 			{user ? (
 				<div className="right-block" >
 				    <br></br>
@@ -69,12 +74,19 @@ const Header = () => {
 				</div>
 			) : (
 				<div className="right-block">
-					 <br></br>
 					<br></br>
 					<Link to="/login">
 						<h2>Log In</h2>
 					</Link>
+
+					<br></br>
+					<Link to="/login">
+					<h2>Log In</h2>
+					</Link>
+					<Link to="https://www.youtube.com/watch?v=rRPQs_kM_nw&t=7s&ab_channel=10HoursMovies">
+
 					<h2>Help</h2>
+					</Link> 
 				</div>
 			)}
 		</header>

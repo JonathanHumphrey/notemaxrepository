@@ -20,20 +20,25 @@
 }
 
 .form-container{
+  display: flex;
   background-color: transparent;
   width: 45%;
   margin: auto;
   margin-top: 2rem;
   border: none;
   padding: 2rem;
+ justify-content: center;
+ border: 10px green;
 }
 .form {
   display: flex;
   flex-flow: column nowrap;
+  justify-content: center;
   gap: 0.75em;
-  max-width: 50rem;
   margin-left: 0rem;
-  justify-content: left;
+  width:100%;
+  
+
 }
 
 .form__checkbox-container {
@@ -53,11 +58,12 @@
 .form__title-row {
   font-size: 20px;
   font-weight: 700;
-  line-height: 39px;
+  line-height: 10px;
   letter-spacing: 0em;
   font-family: 'Kufam', sans-serif;
   display: flex;
-  margin-left: 8.75rem;
+  width: 100%;
+  justify-content: center;
 }
 
 .form__label{
@@ -98,40 +104,46 @@
   height: 24px;
 }
 select{
+
+  display: flex;
+  justify-content: center;
   appearance: none;
+  text-align: center;
   background-color: transparent;
   border: none;
-  padding: 0 1em 0 0;
+
   margin: 0;
-  width: 100%;
+  width: 50%;
   font-family: inherit;
   font-size: inherit;
   cursor: inherit;
   line-height: inherit;
   outline: none;
   overflow-y: auto;
+
 }
 select::-ms-expand {
   display: none;
 }
 .select-wrapper{
-  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
   min-width: 15ch;
-  max-width: 30ch;
-  border: 1px solid #777;
-  border-radius: 0.25em;
-  padding: 0.25em 0.5em;
+ 
+
   font-size: 1.25rem;
   cursor: pointer;
   line-height: 1.1;
-  background-color: #fff;
-  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+ 
+  
 }
 .select-wrapper::after{
+ 
   content: "";
   width: 0.8em;
   height: 0.5em;
-  background-color: #777;
+
   clip-path: polygon(100% 0%, 0 0%, 50% 100%);
 }
 
@@ -158,6 +170,7 @@ select::-ms-expand {
 
 
 .btn-group{
+  
   padding: auto;
   text-decoration: none;
   font-size: 20px;
@@ -166,11 +179,11 @@ select::-ms-expand {
   cursor: pointer;
   width: 12.5rem;
   height: 2.5rem;
-  border: none;
+ 
 }
-.btn-group-sumbit{  
+.btn-group-sumbit{   
   margin-left: 8.75rem;
-  color: white;
+ 
   background-color: #9767da;
 }
 .btn-group-select{
@@ -187,4 +200,12 @@ select::-ms-expand {
 .invalid{
   display: block;
   color: red;
+}
+
+.btn-container{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+ 
+ 
 }

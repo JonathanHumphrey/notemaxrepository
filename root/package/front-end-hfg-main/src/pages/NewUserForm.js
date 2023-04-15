@@ -76,9 +76,15 @@ const NewUserForm = () => {
 		);
 	});
 	const errClass = isError ? "errmsg" : "";
-	const validUserClass = !validName ? "form__input--incomplete" : "form__input--complete";
-	const validPwdClass = !validPassword ? "form__input--incomplete" : "form__input--complete";
-	const validEmailClass = !validEmail ? "form__input--incomplete" : "form__input--complete";
+	const validUserClass = !validName
+		? "form__input--incomplete"
+		: "form__input--complete";
+	const validPwdClass = !validPassword
+		? "form__input--incomplete"
+		: "form__input--complete";
+	const validEmailClass = !validEmail
+		? "form__input--incomplete"
+		: "form__input--complete";
 	const validCategoriesClass = !Boolean(categories.length)
 		? "form__input--incomplete"
 		: "";
@@ -106,9 +112,9 @@ const NewUserForm = () => {
 							value={name}
 							onChange={onnameChanged}
 						/>
-						
+
 						<label className="form__label" htmlFor="email">
-							Username
+							Email
 						</label>
 						<input
 							className={`form__input ${validEmailClass}`}
@@ -136,7 +142,7 @@ const NewUserForm = () => {
 						<label className="form__label" htmlFor="categories">
 							What are you most interested in?
 						</label>
-						{ /*
+						{/*
 							<div className="form__row">
 								<button className="btn-group btn-group-select" title="Sign Up" disabled={!canSave}>
 									Notes
@@ -146,22 +152,26 @@ const NewUserForm = () => {
 								</button>
 							</div>
 						 */}
-						
-							<div className="select-wrapper">
-								<select
-									id="categories"
-									name="categories"
-									className={`form__select ${validCategoriesClass}`}
-									multiple={true}
-									size="3"
-									value={categories}
-									onChange={onCategoriesChanged}
-								>
-									{options}
-								</select>
-							</div>
-						
-						<button className="btn-group btn-group-sumbit" title="Sign Up" disabled={!canSave}>
+
+						<div className="select-wrapper">
+							<select
+								id="categories"
+								name="categories"
+								className={`form__select ${validCategoriesClass}`}
+								multiple={true}
+								size="3"
+								value={categories}
+								onChange={onCategoriesChanged}
+							>
+								{options}
+							</select>
+						</div>
+
+						<button
+							className="btn-group btn-group-sumbit"
+							title="Sign Up"
+							disabled={!canSave}
+						>
 							Sign Up
 						</button>
 					</form>

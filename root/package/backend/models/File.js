@@ -5,6 +5,10 @@ const fileSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	username: {
+		type: String,
+		required: true,
+	},
 	file: {
 		type: Object,
 		required: true,

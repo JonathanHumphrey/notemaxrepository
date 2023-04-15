@@ -1,16 +1,8 @@
 const File = require("../models/File");
 const fs = require("fs");
-const mongoose = require("mongoose");
-const Grid = require("gridfs-stream");
-const GridFS = Grid(
-	"ac-cg3ukqo-shard-00-01.n4odbm8.mongodb.net",
-	mongoose.mongo
-);
 const asyncHandler = require("express-async-handler");
 
 const multer = require("multer");
-
-// This can only accept string data as of now, I haven't been able to connect it to the actual file for storage
 
 const uploadFile = asyncHandler(async (req, res) => {
 	const upload = multer({
@@ -30,20 +22,23 @@ const uploadFile = asyncHandler(async (req, res) => {
 		},
 	}).single("file");
 
-	// Call the Multer middleware to handle the file upload
+	// Calls Multer middleware to handle the file upload
 	upload(req, res, (err) => {
 		if (err) {
 			console.error(err);
 			return res.status(400).send({ message: err.message });
 		}
 
-		// Here you can access the uploaded file via req.file
 		const file = req.file;
 		const fileData = req.body;
+		const binary = fs.readFileSync(file.path);
+		file.path = binary;
+		console.log(file);
 
-		// The rest of your code to handle the uploaded file data goes here
+		// File storage handling
 		const fileForUpload = File.create({
 			author: fileData.author,
+			username: fileData.username,
 			file: file,
 			date: fileData.date,
 			likes: fileData.likes,
@@ -53,13 +48,14 @@ const uploadFile = asyncHandler(async (req, res) => {
 		if (fileForUpload) {
 			console.log(fileForUpload);
 			res.status(201).json({
+				_id: fileForUpload._id,
 				author: fileForUpload.author,
+				username: fileData.username,
 				file: fileForUpload.file,
 				date: fileForUpload.date,
 				likes: fileForUpload.likes,
 				dislikes: fileForUpload.dislikes,
 				category: fileForUpload.category,
-				comments: fileForUpload.comments,
 			});
 		} else {
 			return res.status(400).json({ message: "upload Failed" });
@@ -104,7 +100,8 @@ const getAllFiles = asyncHandler(async (req, res) => {
 	if (!files?.length) {
 		return res.status(400).json({ message: "No Files Found" });
 	}
-	res.json(files);
+	//res.set("Content-Type", "application/pdf");
+	res.send(files);
 });
 module.exports = {
 	uploadFile,

@@ -9,6 +9,7 @@ import { useGetUsersQuery } from "../features/usersApiSlice";
 import { selectUserById } from "../features/usersApiSlice";
 
 import logo from "../static/logo.png"
+import { Link } from "react-router-dom";
 
 const Header = () => {
 
@@ -36,12 +37,14 @@ const Header = () => {
 			<div className="left-block">
 			<br></br>
 				<div className="center-image">
-				<img style={{
-					height: 100,
-					width: 170,
-				}}
-				src={logo }  >
-				</img>
+					<Link to="/">
+						<img style={{
+							height: 100,
+							width: 170,
+						}}
+							src={logo }  >
+						</img>
+					</Link>
 				</div>
 				<br></br>
 				<br></br>
@@ -72,11 +75,16 @@ const Header = () => {
 			) : (
 				<div className="right-block">
 					<br></br>
+					<Link to="/login">
+						<h2>Log In</h2>
+					</Link>
+
 					<br></br>
 					<Link to="/login">
 					<h2>Log In</h2>
 					</Link>
 					<Link to="https://www.youtube.com/watch?v=rRPQs_kM_nw&t=7s&ab_channel=10HoursMovies">
+
 					<h2>Help</h2>
 					</Link> 
 				</div>

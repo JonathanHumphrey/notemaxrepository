@@ -7,15 +7,20 @@ const initialState = filesAdapter.getInitialState();
 export const fileApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		getFiles: builder.query({
-			query: () => "api/files",
+			query: () => ({
+				url: "api/files",
+				method: "GET",
+				//responseType: "blob",
+			}),
 			validateStatus: (response, result) => {
 				return response.status === 200 && !result.isError;
 			},
 			transformResponse: (responseData) => {
-				return responseData.map((file) => {
+				const loadedFiles = responseData.map((file) => {
 					file.id = file._id;
 					return file;
 				});
+				return filesAdapter.setAll(initialState, loadedFiles);
 			},
 		}),
 		uploadFile: builder.mutation({
@@ -25,10 +30,24 @@ export const fileApiSlice = apiSlice.injectEndpoints({
 				body: formData,
 			}),
 		}),
+		updateLikes: builder.mutation({
+			query: (fileId, likes) => ({
+				url: "/like",
+				method: "PATCH",
+				body: {
+					id: fileId,
+					likes: likes,
+				},
+			}),
+		}),
 	}),
 });
 
-export const { useUploadFileMutation, useGetFilesQuery } = fileApiSlice;
+export const {
+	useUploadFileMutation,
+	useGetFilesQuery,
+	useUpdateLikesMutation,
+} = fileApiSlice;
 
 export const selectFileResult = fileApiSlice.endpoints.getFiles.select();
 

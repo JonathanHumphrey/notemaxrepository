@@ -1,22 +1,25 @@
 import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { selectUserById } from "../features/usersApiSlice";
+import {
+	selectUserById,
+	useDeleteUserCategoryMutation,
+} from "../features/usersApiSlice";
 import { CATEGORIES } from "../config/categories";
-import { useUpdateUserMutation } from "../features/usersApiSlice";
+import { useAddUserCategoryMutation } from "../features/usersApiSlice";
 
 import "../styles/UpdateTemplate.css";
 const UpdateTemplate = (props) => {
 	const userId = localStorage.getItem("userId");
 	const user = useSelector((state) => selectUserById(state, userId));
 
-	const [updateUser] = useUpdateUserMutation();
+	const [addCategory] = useAddUserCategoryMutation();
+	const [deleteCategory] = useDeleteUserCategoryMutation();
 
-	const [categories, setCategories] = useState(["Worksheets"]);
+	const [categories, setCategories] = useState([]);
 	const options = Object.values(CATEGORIES).map((category) => {
 		return (
 			<option key={category} value={category}>
-				{" "}
 				{category}
 			</option>
 		);
@@ -37,13 +40,37 @@ const UpdateTemplate = (props) => {
 			id: userId,
 			array: array,
 		};
-		const payload = updateUser(obj);
 
-		console.log(payload);
+		if (array === undefined) {
+			console.log("nothing to add");
+		} else {
+			const payload = addCategory(obj);
+
+			setCategories(payload.data.categories);
+		}
 	};
+	const handleDeleteCategory = () => {
+		const array = categories.filter((item) => user.categories.includes(item));
+
+		const obj = {
+			id: userId,
+			array: array,
+		};
+		const payload = deleteCategory(obj);
+		setCategories(payload.data.categories);
+	};
+
 	const content = (
 		<div className={props.isOpen ? "modal-container open" : "modal-container"}>
 			<div className="update-content">
+				<div className="active-categories">
+					<h2>Your Categories</h2>
+					{user.categories.map((category, id) => (
+						<p key={id} className="category">
+							{category}
+						</p>
+					))}
+				</div>
 				<div className="select-wrapper">
 					<select
 						id="categories"
@@ -57,11 +84,13 @@ const UpdateTemplate = (props) => {
 						{options}
 					</select>
 				</div>
-				<div>
-					<button className="sub-btn" onClick={handleAddCategory}>
+				<div className="buttons">
+					<button className="sub-btn add" onClick={handleAddCategory}>
 						Add Category
 					</button>
-					<button className="sub-btn">Delete Category</button>
+					<button className="sub-btn del" onClick={handleDeleteCategory}>
+						Delete Category
+					</button>
 				</div>
 				<button className="close-btn" onClick={props.hideModal}>
 					&#x2715;

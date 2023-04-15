@@ -17,7 +17,7 @@ const FileUpload = (props) => {
 	const user = useSelector((state) => selectUserById(state, userId));
 	const [uploadFile, { isSuccess }] = useUploadFileMutation();
 	const [file, setFile] = useState("");
-	const [categories, setCategories] = useState("");
+	const [categories, setCategories] = useState(user.categories[0]);
 
 	const [likes, setLikes] = useState(0);
 	const [dislikes, setDislikes] = useState(0);

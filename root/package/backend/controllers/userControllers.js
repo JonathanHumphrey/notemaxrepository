@@ -34,6 +34,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
 const authUser = asyncHandler(async (req, res) => {
 	const { email, password } = req.body;
+	console.log(email);
 
 	const user = await User.findOne({ email });
 	if (user && (await user.matchPassword(password))) {
@@ -87,34 +88,67 @@ const deleteUser = asyncHandler(async (req, res) => {
 const addLikedCategory = asyncHandler(async (req, res) => {
 	console.log(req.body);
 	const user_id = req.body.id;
-	const categories = req.body.categories;
+	const categoriesToAdd = req.body.array;
 
 	if (!user_id) {
 		return res.status(400).json({ message: "User Id Required" });
 	}
-	const user = await User.findById(user_id).exec();
+
+	try {
+		const options = { new: false, fields: { password: 0, email: 0, name: 0 } };
+		const user = await User.findByIdAndUpdate(
+			user_id,
+			{ $push: { categories: { $each: categoriesToAdd } } },
+			options
+		).exec();
+
+		if (!user) {
+			return res.status(400).json({ message: "User not found" });
+		}
+		await user.save();
+		res.status(200).json({ message: `Categories added successfully` });
+	} catch (err) {
+		console.error("Error adding category:", err);
+		res.status(500).json({ error: "Failed to add category" });
+	}
+});
+
+const removeLikedCategory = asyncHandler(async (req, res) => {
+	console.log(req.body);
+	const user_id = req.body.id;
+	const categories = req.body.array;
+
+	if (!user_id && !category) {
+		return res.status(400).json({ message: "User Id & category Required" });
+	}
+	const user = await User.findByIdAndUpdate(user_id).exec();
 
 	if (!user) {
 		return res.status(400).json({ message: "User not found" });
 	}
 
 	try {
-		categories.forEach((element) => {
-			user.categories.push(element);
+		user.categories.forEach((element, index) => {
+			if (categories.includes(element)) {
+				user.categories.splice(index, 1);
+			} else {
+				return res.status(404).json({ error: "Category not found" });
+			}
 		});
 		await user.save();
-		res
-			.status(200)
-			.json({ message: `Categories: ${categories} added successfully` });
+		res.status(200);
+		res.json({ message: `Category removed correctly` });
 	} catch (err) {
-		console.error("Error adding category:", err);
-		res.status(500).json({ error: "Failed to add category" });
+		console.error("Error deleting category:", err);
+		res.status(500).json({ error: "Failed to failed category" });
 	}
 });
+
 module.exports = {
 	registerUser,
 	authUser,
 	getAllUsers,
 	deleteUser,
 	addLikedCategory,
+	removeLikedCategory,
 };

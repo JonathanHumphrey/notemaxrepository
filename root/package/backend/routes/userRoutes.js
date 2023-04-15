@@ -15,7 +15,7 @@ router
 router.route("/login").post(authUser);
 
 router.route("/categories").put(userController.addLikedCategory);
-//router.route("/categories").delete(userController.removeLikedCategory);
+router.route("/categories").delete(userController.removeLikedCategory);
 //router.route("/categories").get(userController.getUsersLikedCategories);
 
 module.exports = router;

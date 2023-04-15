@@ -45,10 +45,19 @@ export const usersApiSlice = apiSlice.injectEndpoints({
 				body: { ...credentials },
 			}),
 		}),
-		updateUser: builder.mutation({
+		addUserCategory: builder.mutation({
 			query: (userData) => ({
 				url: "/api/users/categories",
 				method: "PUT",
+				body: {
+					...userData,
+				},
+			}),
+		}),
+		deleteUserCategory: builder.mutation({
+			query: (userData) => ({
+				url: "/api/users/categories",
+				method: "DELETE",
 				body: {
 					...userData,
 				},
@@ -69,7 +78,8 @@ export const {
 	useGetUsersQuery,
 	useAddNewUserMutation,
 	useLoginMutation,
-	useUpdateUserMutation,
+	useAddUserCategoryMutation,
+	useDeleteUserCategoryMutation,
 	useDeleteUserMutation,
 } = usersApiSlice;
 

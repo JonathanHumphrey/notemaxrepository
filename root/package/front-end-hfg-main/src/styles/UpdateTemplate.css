@@ -13,7 +13,12 @@
     display: flex;
     flex-direction: row;
 }
+.select-wrapper{
+    
+    width: 100%;
+}
 .update-content{
+    
     width: 60%;
     height: 80%;
     background-color: rgb(0, 0, 0);
@@ -22,21 +27,42 @@
     position: absolute;
     border-radius: 1rem;
     background: linear-gradient(0deg, #9767DA 0%, #C3B0FC 66%);
+    justify-content: center;
+    align-items: center;
+}
+.active-categories{
+    text-align: center;
+}
+.category{
+    text-indent: -1rem;
+}
+.buttons{
+    
+    display: flex;
+    width: 50%;
 }
 .sub-btn{
     color: white;
-    padding: 15px 32px;
+    padding: 1rem;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
     margin: auto;
+    margin-top: 4rem;
     cursor: pointer;
     width: 10rem;
     background: #C3B0FC;
     border-radius: 20px;
 }
 .sub-btn:hover{
-    background-color: #060F09;
+    
+    transform: translateY(3px);
+}
+.sub-btn.add:hover{
+    background-color: #03a762;
+}
+.sub-btn.del:hover{
+    background-color: #a73f03;
 }
 .close-btn{
     position: absolute;

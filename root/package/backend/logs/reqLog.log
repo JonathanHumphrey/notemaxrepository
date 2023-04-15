@@ -1689,3 +1689,4 @@
 20230415	11:23:35	5074be80-4b74-4064-b7c9-43670fb27ac3	GET	/api/files	http://localhost:3000
 20230415	11:24:01	40d1ed38-8c59-4450-b9ec-150f566d268d	GET	/api/users	http://localhost:3000
 20230415	11:24:01	0ca7e936-128e-4dd9-9316-db76353b8f37	GET	/api/files	http://localhost:3000
+20230415	11:42:14	9eaa4b49-1faa-4ff1-8c21-1fdd8005dab8	GET	/api/users	http://localhost:3000

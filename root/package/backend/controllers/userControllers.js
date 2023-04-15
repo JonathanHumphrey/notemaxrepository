@@ -81,4 +81,40 @@ const deleteUser = asyncHandler(async (req, res) => {
 
 	res.json(reply);
 });
-module.exports = { registerUser, authUser, getAllUsers, deleteUser };
+
+// @desc adds a liked category to the users profile
+// @params user_id, category
+const addLikedCategory = asyncHandler(async (req, res) => {
+	console.log(req.body);
+	const user_id = req.body.id;
+	const categories = req.body.categories;
+
+	if (!user_id) {
+		return res.status(400).json({ message: "User Id Required" });
+	}
+	const user = await User.findById(user_id).exec();
+
+	if (!user) {
+		return res.status(400).json({ message: "User not found" });
+	}
+
+	try {
+		categories.forEach((element) => {
+			user.categories.push(element);
+		});
+		await user.save();
+		res
+			.status(200)
+			.json({ message: `Categories: ${categories} added successfully` });
+	} catch (err) {
+		console.error("Error adding category:", err);
+		res.status(500).json({ error: "Failed to add category" });
+	}
+});
+module.exports = {
+	registerUser,
+	authUser,
+	getAllUsers,
+	deleteUser,
+	addLikedCategory,
+};

@@ -30,6 +30,13 @@ export const fileApiSlice = apiSlice.injectEndpoints({
 				body: formData,
 			}),
 		}),
+		deleteFile: builder.mutation({
+			query: ({ id }) => ({
+				url: "api/files",
+				method: "DELETE",
+				body: { id },
+			}),
+		}),
 		updateLikes: builder.mutation({
 			query: (fileId) => ({
 				url: `api/files/like/${fileId}`,

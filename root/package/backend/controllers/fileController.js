@@ -44,6 +44,7 @@ const uploadFile = asyncHandler(async (req, res) => {
 			likes: fileData.likes,
 			dislikes: fileData.dislikes,
 			category: fileData.category,
+			description: fileData.description,
 		});
 		if (fileForUpload) {
 			console.log(fileForUpload);
@@ -56,6 +57,7 @@ const uploadFile = asyncHandler(async (req, res) => {
 				likes: fileForUpload.likes,
 				dislikes: fileForUpload.dislikes,
 				category: fileForUpload.category,
+				description: fileForUpload.description,
 			});
 		} else {
 			return res.status(400).json({ message: "upload Failed" });
@@ -90,6 +92,27 @@ const updateDislikeCount = asyncHandler(async (req, res) => {
 	}
 });
 
+// @desc Allows users to delete files
+// @params: fileId
+const deleteFile = asyncHandler(async (req, res) => {
+	console.log(req.body);
+	const { id } = req.body;
+
+	if (!id) {
+		return res.status(400).json({ message: "File Id Required" });
+	}
+	const file = await File.findById(id).exec();
+
+	if (!file) {
+		return res.status(400).json({ message: "File not found" });
+	}
+
+	const result = await file.deleteOne();
+	const reply = `File by ${result.author} with ID ${result._id} deleted`;
+
+	res.json(reply);
+});
+
 const addComment = asyncHandler(async (req, res) => {
 	const file = await File.findById(req.params.id);
 	const { author, comment } = req.body;
@@ -108,4 +131,5 @@ module.exports = {
 	getAllFiles,
 	updateDislikeCount,
 	updateLikeCount,
+	deleteFile,
 };

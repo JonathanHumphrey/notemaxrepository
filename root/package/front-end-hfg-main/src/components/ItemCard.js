@@ -14,6 +14,7 @@ const ItemCard = (props) => {
 		likes: props.likes,
 		dislikes: props.dislikes,
 		category: props.category,
+		description: props.description,
 	};
 	//setData(fileObject)
 	return (

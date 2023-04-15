@@ -104,11 +104,7 @@ const FileViewer = () => {
 				<div className="right">
 					<div className="file-data">
 						<h2>Description</h2>
-						<p>
-							Lorem ipsum dolor sit amet consectetur. Aliquam nunc blandit et
-							fusce enim donec nunc cursus. Accumsan vivamus sit morbi id.
-							Tristique malesuada turpis vulputate porta.
-						</p>
+						<p>{data.description}</p>
 						<h3>Category: {data.category}</h3>
 					</div>
 					<div className="ratings">

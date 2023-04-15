@@ -8,11 +8,9 @@ import { useSelector } from "react-redux";
 import { useGetUsersQuery } from "../features/usersApiSlice";
 import { selectUserById } from "../features/usersApiSlice";
 
-import logo from "../static/logo.png"
-import { Link } from "react-router-dom";
+import logo from "../static/logo.png";
 
 const Header = () => {
-
 	useGetUsersQuery(undefined, {
 		pollingInterval: 60000,
 		refetchOnFocus: true,
@@ -30,39 +28,42 @@ const Header = () => {
 		setOpen(false);
 	};
 
-
 	return (
 		<header>
 			{user ? (
-			<div className="left-block">
-			<br></br>
-				<div className="center-image">
-					<Link to="/">
-						<img style={{
-							height: 100,
-							width: 170,
-						}}
-							src={logo }  >
-						</img>
+				<div className="left-block">
+					<br></br>
+					<div className="center-image">
+						<Link to="/">
+							<img
+								alt="notemax logo"
+								style={{
+									height: 100,
+									width: 170,
+								}}
+								src={logo}
+							></img>
+						</Link>
+					</div>
+					<br></br>
+					<br></br>
+					<br></br>
+					<Link to="/dash">
+						<h5>Home</h5>
+					</Link>
+					<Link to="/dash">
+						<h5>Your Notes</h5>
+					</Link>
+					<Link to="/dash">
+						<h5>Templates</h5>
 					</Link>
 				</div>
-				<br></br>
-				<br></br>
-				<br></br>
-				<Link to="/dash">
-				<h5>Home</h5>
-				</Link>
-				<Link to="/dash">
-				<h5>Your Notes</h5>
-				</Link>
-				<Link to="/dash">
-				<h5>Templates</h5>
-				</Link>
-			</div>
-			):(<div className = "left-blockNotlogged" ></div>)}
+			) : (
+				<div className="left-blockNotlogged"></div>
+			)}
 			{user ? (
-				<div className="right-block" >
-				    <br></br>
+				<div className="right-block">
+					<br></br>
 					<br></br>
 
 					<h2 id="user" onClick={handleModalOpen}>
@@ -78,15 +79,9 @@ const Header = () => {
 					<Link to="/login">
 						<h2>Log In</h2>
 					</Link>
-
-					<br></br>
-					<Link to="/login">
-					<h2>Log In</h2>
-					</Link>
 					<Link to="https://www.youtube.com/watch?v=rRPQs_kM_nw&t=7s&ab_channel=10HoursMovies">
-
-					<h2>Help</h2>
-					</Link> 
+						<h2>Help</h2>
+					</Link>
 				</div>
 			)}
 		</header>

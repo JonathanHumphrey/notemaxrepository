@@ -31,6 +31,10 @@ const fileSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	description: {
+		type: String,
+		required: true,
+	},
 });
 
 const File = mongoose.model("File", fileSchema);

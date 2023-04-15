@@ -6,7 +6,6 @@ import { Document, Page, pdfjs } from "react-pdf";
 import { useUploadFileMutation } from "../features/fileApiSlice";
 import { useSelector } from "react-redux";
 import { selectUserById } from "../features/usersApiSlice";
-import { CATEGORIES } from "../config/categories";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -23,7 +22,10 @@ const FileUpload = (props) => {
 	const [likes, setLikes] = useState(0);
 	const [dislikes, setDislikes] = useState(0);
 
-	const options = Object.values(CATEGORIES).map((category) => {
+	const [value, setValue] = useState("");
+	const [remainingChars, setRemainingChars] = useState(180);
+
+	const options = Object.values(user.categories).map((category) => {
 		return (
 			<option key={category} value={category}>
 				{" "}
@@ -32,7 +34,6 @@ const FileUpload = (props) => {
 		);
 	});
 	const onCategoriesChanged = (e) => {
-		console.log(categories);
 		setCategories(e.target.value);
 	};
 
@@ -42,6 +43,14 @@ const FileUpload = (props) => {
 	const handleFileChange = (event) => {
 		setFile(event.target.files[0]);
 	};
+
+	const handleChange = (event) => {
+		const inputValue = event.target.value;
+		setValue(inputValue);
+
+		const charsLeft = 180 - inputValue.length;
+		setRemainingChars(charsLeft);
+	};
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
@@ -49,7 +58,6 @@ const FileUpload = (props) => {
 		let realDate = formatUTCDate(date);
 		setLikes(0);
 		setDislikes(0);
-		console.log(categories);
 
 		console.log(file);
 		const renamedFile = new File([file], userId + "-" + file.name, {
@@ -65,10 +73,12 @@ const FileUpload = (props) => {
 		formData.append("likes", likes);
 		formData.append("dislikes", dislikes);
 		formData.append("category", categories);
+		formData.append("description", value);
 
 		for (var key of formData.entries()) {
 			console.log(key[0] + ", " + key[1]);
 		}
+
 		const payload = await uploadFile({ formData });
 		console.log(payload);
 	};
@@ -102,13 +112,30 @@ const FileUpload = (props) => {
 								{options}
 							</select>
 						</div>
+						<div className="description-wrapper">
+							<div className="description-header">
+								<label htmlFor="title-description">Description:</label>
+								<p>{remainingChars}</p>
+							</div>
+							<textarea
+								className="description-input"
+								type="text"
+								id="title-description"
+								name="title-description"
+								placeholder="180 Char. limit"
+								maxLength="180"
+								wrap="soft"
+								value={value}
+								onChange={handleChange}
+							/>
+						</div>
 					</div>
 					<button className="sub-btn" type="submit">
 						Upload
 					</button>
 				</form>
 				<button className="close-btn" onClick={props.hideModal}>
-					Close
+					&#x2715;
 				</button>
 			</div>
 		</div>

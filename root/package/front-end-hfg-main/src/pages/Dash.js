@@ -9,19 +9,13 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectUserById } from "../features/usersApiSlice";
 import { useGetUsersQuery } from "../features/usersApiSlice";
-import { ModalProvider, ModalContext, ModalRoot } from 'react-multi-modal';
+import { ModalProvider, ModalContext, ModalRoot } from "react-multi-modal";
 import {
 	selectAllFiles,
 	selectFileById,
 	useGetFilesQuery,
 } from "../features/fileApiSlice";
 
-
-// data imported from static to mimic the backend
-import { dummyData } from "../static/dummyData";
-import { userData } from "../static/userData";
-
-import FileSaver from "file-saver";
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const Dash = () => {
@@ -37,22 +31,9 @@ const Dash = () => {
 	const userId = localStorage.getItem("userId");
 	const user = useSelector((state) => selectUserById(state, userId));
 
-
 	// TEST AREA
 	const [pdfUrl, setUrl] = useState(null);
 	const files = useSelector((state) => selectAllFiles(state));
-
-	const getPdf = async () => {
-		console.log(files);
-		const path = files[27].file.path;
-		var buffer = Buffer.from(path, "base64");
-
-		const blob = new Blob([buffer], { type: "application/pdf" });
-		const url = URL.createObjectURL(blob);
-		FileSaver.saveAs(blob, "file.pdf");
-		setUrl(url);
-		console.log(pdfUrl);
-	};
 
 	// END TEST AREA
 
@@ -63,7 +44,6 @@ const Dash = () => {
 	const handleCloseModal = () => {
 		setModalOpen(false);
 	};
-	*/}
 
 	if (user) {
 		return (
@@ -73,13 +53,21 @@ const Dash = () => {
 					<ModalProvider>
 						<ModalContext.Consumer>
 							{({ showModal, hideModal }) => (
-							<>
-								<div className="button-group">
-									<button onClick={() =>  showModal({ component: UpdateTemplate})}>Update Template Preferences</button>
-									<button onClick={() => showModal({ component: FileUpload })}>Upload Template</button>
-								</div>
-								<ModalRoot />
-							</>
+								<>
+									<div className="button-group">
+										<button
+											onClick={() => showModal({ component: UpdateTemplate })}
+										>
+											Update Template Preferences
+										</button>
+										<button
+											onClick={() => showModal({ component: FileUpload })}
+										>
+											Upload Template
+										</button>
+									</div>
+									<ModalRoot />
+								</>
 							)}
 						</ModalContext.Consumer>
 					</ModalProvider>
@@ -102,6 +90,7 @@ const Dash = () => {
 										likes={data.likes}
 										dislikes={data.dislikes}
 										category={data.category}
+										description={data.description}
 									/>
 								) : null
 							)}
@@ -127,7 +116,7 @@ const Dash = () => {
 											likes={data.likes}
 											dislikes={data.dislikes}
 											category={data.category}
-											comments={data.comments}
+											description={data.description}
 										/>
 									) : null
 								)}
@@ -141,11 +130,3 @@ const Dash = () => {
 };
 
 export default Dash;
-
-/* {user.categories.includes(dummyData.category)?
-	dummyData.map((data, index) =>{
-		<ItemCard author={data.author}/>
-	})
-:
-null
-} */

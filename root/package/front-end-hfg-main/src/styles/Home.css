@@ -22,7 +22,7 @@
 
 }
 .container{
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0);
     width: 85vw;
     margin: auto;
     margin-top: 3rem;
@@ -31,7 +31,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-
 }
 
 .text{
@@ -56,44 +55,45 @@
     height: 40px;
     left: 787px;
     top: 504px;
-background: #9767DA;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 20px;    
-font-family: 'Kufam';
-font-style: normal;
-font-weight: 700;
-font-size: 18px;
-line-height: 35px;
-text-align: center;
+    background: #9767DA;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;    
+    font-family: 'Kufam';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 35px;
+    text-align: center;
 
 }
 .styled-link:visited{
     color: rgb(255, 255, 255);
     font-family: 'Kufam';
-font-style: normal;
-font-weight: 700;
-font-size: 18px;
-line-height: 35px;
-text-align: center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 35px;
+    text-align: center;
 }
 .styled-link:hover{
     background-color: #acb4f1;
     font-family: 'Kufam';
-font-style: normal;
-font-weight: 700;
-font-size: 18px;
-line-height: 35px;
-text-align: center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 35px;
+    text-align: center;
+    transform: translateY(-4px);
+    transition: transform 0.2s ease-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .rectangle{
     /* Rectangle 4 */
   position: absolute;
-  width: 1512px;
-  height: 350px;
-  left: 0px;
-  top: 510px;
-  width: 100%;
+  width: 100vw;
+  height: 100dvh;
+  z-index: -1;
   background: linear-gradient(180deg, rgba(195, 176, 252, 0) 0%, #C3B0FC 66.47%);
   }
   .h1{

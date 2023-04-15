@@ -30,7 +30,7 @@ const Home = () => {
 				<p id="splash-text">
 					We a
 				</p>
-	</div>*/}
+			</div>*/}
 		</div>
 	);
 };

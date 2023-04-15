@@ -6,6 +6,9 @@
     margin-bottom: auto;
   
 }
+.template-container{
+    display: flex;
+}
 .button-group{
     display: flex;
     width: 30%;

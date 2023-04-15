@@ -19,8 +19,7 @@ const FileUpload = (props) => {
 	const [uploadFile, { isSuccess }] = useUploadFileMutation();
 	const [file, setFile] = useState("");
 	const [categories, setCategories] = useState("");
-	const [author, setAuthor] = useState("");
-	const [formattedDate, setDate] = useState("");
+
 	const [likes, setLikes] = useState(0);
 	const [dislikes, setDislikes] = useState(0);
 

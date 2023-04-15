@@ -44,9 +44,20 @@
     padding: .75rem;
     width: 10rem;
     border-radius: 1rem;
+    cursor: pointer;
 }
 .like-button.liked{
     background-color: #03a762;
+}
+.dislike-button{
+    background-color: #C3B0FC;
+    padding: .75rem;
+    width: 10rem;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+.dislike-button.disliked{
+    background-color: #a73f03;
 }
 .file-info{
     

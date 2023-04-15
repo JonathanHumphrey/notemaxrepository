@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Document, Page, pdfjs } from "react-pdf";
 
 import { useUpdateLikesMutation } from "../features/fileApiSlice";
+import { useUpdateDislikesMutation } from "../features/fileApiSlice";
 
 // Icon imports
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,11 +15,6 @@ import { faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import "../styles/FileViewer.css";
 
 // For download
-import {
-	selectAllFiles,
-	selectFileById,
-	useGetFilesQuery,
-} from "../features/fileApiSlice";
 
 import FileSaver from "file-saver";
 window.Buffer = window.Buffer || require("buffer").Buffer;
@@ -27,12 +23,12 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 // COLORS: 060F09, 9767DA, C3B0FC
 const FileViewer = () => {
 	// likes and dislikes handlers
-	const [updateLikes, { isSuccess }] = useUpdateLikesMutation();
+	const [updateLikes] = useUpdateLikesMutation();
+	const [updateDislikes] = useUpdateDislikesMutation();
 
 	const location = useLocation();
 	const data = location.state?.data;
-	const [file, setFile] = useState("");
-	const [pdfUrl, setUrl] = useState(null);
+
 	const [numPages, setNumPages] = useState(null);
 	const [pageNumber, setPageNumber] = useState(1);
 	const path = data.file.path;
@@ -52,17 +48,30 @@ const FileViewer = () => {
 	}
 
 	const [likes, setLikes] = useState(data["likes"]);
-	const handleLike = (event) => {
+	const handleLike = async (event) => {
 		const likeButton = document.getElementById("like");
 		if (!likeButton.classList.contains("liked")) {
 			likeButton.classList.toggle("liked");
+			const payload = await updateLikes(data["id"]);
+			console.log(payload.data);
 
-			let ratings = likes + 1;
-			setLikes(ratings);
+			setLikes(payload.data.likes);
 			console.log(likes);
 		} else {
 			likeButton.classList.toggle("liked");
 			setLikes(likes - 1);
+		}
+	};
+
+	const [dislikes, setDislikes] = useState(data["likes"]);
+	const handleDislike = async () => {
+		const dislikeButton = document.getElementById("dislike");
+
+		if (!dislikeButton.classList.contains("disliked")) {
+			dislikeButton.classList.toggle("disliked");
+
+			const payload = await updateDislikes(data["id"]);
+			setDislikes(payload.data.dislikes);
 		}
 	};
 
@@ -106,8 +115,8 @@ const FileViewer = () => {
 						<p className="like-button" onClick={handleLike} id="like">
 							<FontAwesomeIcon icon={faThumbsUp} /> {likes}
 						</p>
-						<p className="rating-item">
-							<FontAwesomeIcon icon={faThumbsDown} /> {data["dislikes"]}
+						<p className="dislike-button" onClick={handleDislike} id="dislike">
+							<FontAwesomeIcon icon={faThumbsDown} /> {dislikes}
 						</p>
 					</div>
 				</div>

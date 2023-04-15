@@ -1,16 +1,8 @@
 const File = require("../models/File");
 const fs = require("fs");
-const mongoose = require("mongoose");
-/* const Grid = require("gridfs-stream");
-const GridFS = Grid(
-	"ac-cg3ukqo-shard-00-01.n4odbm8.mongodb.net",
-	mongoose.mongo
-); */
 const asyncHandler = require("express-async-handler");
 
 const multer = require("multer");
-
-// This can only accept string data as of now, I haven't been able to connect it to the actual file for storage
 
 const uploadFile = asyncHandler(async (req, res) => {
 	const upload = multer({
@@ -71,13 +63,12 @@ const uploadFile = asyncHandler(async (req, res) => {
 	});
 });
 const updateLikeCount = asyncHandler(async (req, res) => {
-	console.log("here");
-	const file = await File.findById(req.body.id);
+	const file = await File.findById(req.params.id);
 
 	if (file) {
-		file.likes = req.body.likes;
+		file.likes = file.likes + 1;
 		const updatedFile = await file.save();
-		console.log("New likes = " + req.params.likes);
+		console.log("New likes = " + file.likes + 1);
 		res.json(updatedFile);
 	} else {
 		res.status(404);
@@ -109,7 +100,7 @@ const getAllFiles = asyncHandler(async (req, res) => {
 	if (!files?.length) {
 		return res.status(400).json({ message: "No Files Found" });
 	}
-	res.set("Content-Type", "application/pdf");
+	//res.set("Content-Type", "application/pdf");
 	res.send(files);
 });
 module.exports = {

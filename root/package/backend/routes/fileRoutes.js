@@ -14,7 +14,7 @@ router
 /* .delete(fileController.deleteFile)
     .get(fileController.downloadFile) */
 
-router.route("/like/:id").patch(fileController.updateLikeCount);
+router.route("/like/:id").put(updateLikeCount);
 router.route("/dislike/:id").put(fileController.updateDislikeCount);
 
 module.exports = router;

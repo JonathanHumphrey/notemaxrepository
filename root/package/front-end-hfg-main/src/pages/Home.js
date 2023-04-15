@@ -28,7 +28,23 @@ const Home = () => {
 					</Link>
 					
 			</div>
-			
+
+			<div className="links">
+				<Link className="styled-link" to="/login">
+					Log In
+				</Link>
+				<Link className="styled-link" to="/signup">
+					Sign Up
+				</Link>
+			</div>
+
+			{/*<div className="text">
+				<h1 id="title">About Us</h1>
+				<p id="splash-text">
+					We a
+				</p>
+			</div>*/}
+
 		</div>
 	);
 };

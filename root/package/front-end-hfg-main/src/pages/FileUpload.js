@@ -107,12 +107,12 @@ const FileUpload = (props) => {
 						Upload
 					</button>
 				</form>
-				<button className="close-btn" onClick={props.onClose}>
+				<button className="close-btn" onClick={props.hideModal}>
 					Close
 				</button>
 			</div>
 		</div>
 	);
-	return content;
+	return props.isOpen && content;
 };
 export default FileUpload;

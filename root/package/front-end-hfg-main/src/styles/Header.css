@@ -7,6 +7,7 @@
     text-align: center;
   }
   .nav{
+    color: black;
     text-decoration: none;
     background: #9767DA;
     margin-bottom: 2rem;
@@ -15,15 +16,19 @@
   }
   .nav:hover{
     background: azure;
+    transform: translateX(10px) translateY(2px);
+    z-index: 1;
+    flex-grow: 2;
   }
   .nav:active{
     background: azure;
   }
   .active{
     background: azure;
+    transform: translateX(10px) translateY(2px);
+    z-index: 1;
   }
   .left-block{
-    
     padding-bottom: 40;
     width: 12%;
     align-self: flex-start;

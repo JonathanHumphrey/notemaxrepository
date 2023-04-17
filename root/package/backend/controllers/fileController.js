@@ -33,7 +33,6 @@ const uploadFile = asyncHandler(async (req, res) => {
 		const fileData = req.body;
 		const binary = fs.readFileSync(file.path);
 		file.path = binary;
-		console.log(file);
 
 		// File storage handling
 		const fileForUpload = File.create({
@@ -45,6 +44,8 @@ const uploadFile = asyncHandler(async (req, res) => {
 			dislikes: fileData.dislikes,
 			category: fileData.category,
 			description: fileData.description,
+			usersLiked: fileData.usersLiked,
+			usersDisliked: fileData.usersDisliked,
 		});
 		if (fileForUpload) {
 			console.log(fileForUpload);
@@ -58,6 +59,8 @@ const uploadFile = asyncHandler(async (req, res) => {
 				dislikes: fileForUpload.dislikes,
 				category: fileForUpload.category,
 				description: fileForUpload.description,
+				usersLiked: fileForUpload.usersLiked,
+				usersDisliked: fileForUpload.usersDisliked,
 			});
 		} else {
 			return res.status(400).json({ message: "upload Failed" });
@@ -66,12 +69,22 @@ const uploadFile = asyncHandler(async (req, res) => {
 });
 const updateLikeCount = asyncHandler(async (req, res) => {
 	const file = await File.findById(req.params.id);
+	const user = req.params.user;
 
 	if (file) {
-		file.likes = file.likes + 1;
-		const updatedFile = await file.save();
-		console.log("New likes = " + file.likes + 1);
-		res.json(updatedFile);
+		if (!file.usersLiked.includes(user)) {
+			file.likes = file.likes + 1;
+			file.usersLiked.push(user);
+			const updatedFile = await file.save();
+			console.log("New likes = " + file.likes);
+			res.json(updatedFile);
+		} else {
+			file.likes = file.likes - 1;
+			const filtered = file.usersLiked.filter((id) => id !== user);
+			file.usersLiked = filtered;
+			const updatedFile = await file.save();
+			return res.json(updatedFile);
+		}
 	} else {
 		res.status(404);
 		throw new Error("File not found");
@@ -80,12 +93,21 @@ const updateLikeCount = asyncHandler(async (req, res) => {
 
 const updateDislikeCount = asyncHandler(async (req, res) => {
 	const file = await File.findById(req.params.id);
+	const user = req.params.user;
 
 	if (file) {
-		file.dislikes = file.dislikes + 1;
-		const updatedFile = await file.save();
-		console.log("New dislikes = " + file.dislikes + 1);
-		res.json(updatedFile);
+		if (!file.usersDisliked.includes(user)) {
+			file.dislikes = file.dislikes + 1;
+			file.usersDisliked.push(user);
+			const updatedFile = await file.save();
+			res.json(updatedFile);
+		} else {
+			file.dislikes = file.dislikes - 1;
+			const filtered = file.usersDisliked.filter((id) => id !== user);
+			file.usersDisliked = filtered;
+			const updatedFile = await file.save();
+			return res.json(updatedFile);
+		}
 	} else {
 		res.status(404);
 		throw new Error("File not found");

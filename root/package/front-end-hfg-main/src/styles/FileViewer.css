@@ -46,6 +46,10 @@
     border-radius: 1rem;
     cursor: pointer;
 }
+.like-button:hover{
+    transform: translateY(2px);
+    box-shadow: 10px 10px 22px -3px rgba(0,0,0,0.53);
+}
 .like-button.liked{
     background-color: #03a762;
 }
@@ -55,6 +59,10 @@
     width: 10rem;
     border-radius: 1rem;
     cursor: pointer;
+}
+.dislike-button:hover{
+    transform: translateY(2px);
+    box-shadow: 10px 10px 22px -3px rgba(0,0,0,0.53);
 }
 .dislike-button.disliked{
     background-color: #a73f03;
@@ -80,7 +88,7 @@
 .file-slot{
     
     width: 100%;
-    height: 30rem;
+    height: 40rem;
     margin: auto;
     background-color: #C3B0FC;
 }
@@ -97,7 +105,9 @@
     margin: auto;
 }
 .download-btn:hover{
-    background-color: #C3B0FC;
+    
+    transform: translateY(2px);
+    box-shadow: 10px 10px 22px -3px rgba(0,0,0,0.53);
 }
 h3{
     text-align: left;
@@ -125,8 +135,8 @@ textarea{
 .react-pdf__Page__canvas {
     margin: auto;
     padding: 1rem;
-    width: 350px !important;
-    height: 400px !important;
+    width: 550px !important;
+    height: 600px !important;
 }
 .react-pdf__Page__textContent.textLayer{
     display: none;
@@ -134,4 +144,5 @@ textarea{
 .react-pdf__Page__annotations.annotationLayer{
     display: none;
 }
+
 

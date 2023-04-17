@@ -16,7 +16,9 @@ const UpdateTemplate = (props) => {
 	const [addCategory] = useAddUserCategoryMutation();
 	const [deleteCategory] = useDeleteUserCategoryMutation();
 
-	const [categories, setCategories] = useState([]);
+	const [categories, setCategories] = useState();
+	const [userCategories, setUserCategories] = useState(user.categories);
+
 	const options = Object.values(CATEGORIES).map((category) => {
 		return (
 			<option key={category} value={category}>
@@ -33,7 +35,7 @@ const UpdateTemplate = (props) => {
 		setCategories(values);
 	};
 
-	const handleAddCategory = () => {
+	const handleAddCategory = async () => {
 		const array = categories.filter((item) => !user.categories.includes(item));
 
 		const obj = {
@@ -44,20 +46,23 @@ const UpdateTemplate = (props) => {
 		if (array === undefined) {
 			console.log("nothing to add");
 		} else {
-			const payload = addCategory(obj);
+			const payload = await addCategory(obj);
 
-			setCategories(payload.data.categories);
+			setUserCategories(payload.data.categories);
 		}
+		window.location.reload();
 	};
-	const handleDeleteCategory = () => {
+	const handleDeleteCategory = async () => {
 		const array = categories.filter((item) => user.categories.includes(item));
 
 		const obj = {
 			id: userId,
 			array: array,
 		};
-		const payload = deleteCategory(obj);
-		setCategories(payload.data.categories);
+		const payload = await deleteCategory(obj);
+
+		setUserCategories(payload.data.categories);
+		window.location.reload();
 	};
 
 	const content = (
@@ -65,7 +70,7 @@ const UpdateTemplate = (props) => {
 			<div className="update-content">
 				<div className="active-categories">
 					<h2>Your Categories</h2>
-					{user.categories.map((category, id) => (
+					{userCategories.map((category, id) => (
 						<p key={id} className="category">
 							{category}
 						</p>

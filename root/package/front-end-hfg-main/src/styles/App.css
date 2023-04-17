@@ -2,34 +2,11 @@
   text-align: center;
   margin-top: 0;
   min-height: 100vh;
-  
-
 }
 * {
   margin-top: 0;
 }
-.left-block{
-  position : fixed;
-  padding-bottom: 40;
-  width: 12%;
-  align-self: flex-start;
-  display: inherit;
-  flex-direction: column;
-  height: 100vh;
-  background: linear-gradient(0deg, rgba(195, 176, 252, 0) 0%, #C3B0FC 66.47%);
-  align-items: center;
-  font-size: 22px;
-  
-}
-.right-block{
-  width: 30%;
-  margin: auto;
-  display: inherit;
-  justify-content: right;
-  position: relative;
-  left: 30rem;
-  top: 2rem;
-}
+
 #user{
   cursor: pointer;
 }
@@ -49,13 +26,7 @@ header{
   display: flex;
   flex-direction: row;
 }
-.center-image{
-  display:flex;
-  justify-content:center; /* horizontally center */
-  align-items:center;    /* vertically center */
- 
- 
-}
+
 
 body {
   

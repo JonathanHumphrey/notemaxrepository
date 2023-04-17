@@ -38,22 +38,24 @@ export const fileApiSlice = apiSlice.injectEndpoints({
 			}),
 		}),
 		updateLikes: builder.mutation({
-			query: (fileId) => ({
-				url: `api/files/like/${fileId}`,
-				method: "PUT",
-				body: {
-					id: fileId,
-				},
-			}),
+			query(data) {
+				console.log(data);
+				return {
+					url: `api/files/like/${data.fileId}/${data.userId}`,
+					method: "PUT",
+					body: { userId: data.user },
+				};
+			},
 		}),
 		updateDislikes: builder.mutation({
-			query: (fileId) => ({
-				url: `api/files/dislike/${fileId}`,
-				method: "PUT",
-				body: {
-					id: fileId,
-				},
-			}),
+			query(data) {
+				console.log(data);
+				return {
+					url: `api/files/dislike/${data.fileId}/${data.userId}`,
+					method: "PUT",
+					body: { userId: data.user },
+				};
+			},
 		}),
 	}),
 });

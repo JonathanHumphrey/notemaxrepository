@@ -14,8 +14,9 @@
     flex-direction: row;
 }
 .select-wrapper{
-    
-    width: 100%;
+    border-top: solid black 1px;
+    padding-top: 1rem;
+    width: 75%;
 }
 .update-content{
     
@@ -32,6 +33,7 @@
 }
 .active-categories{
     text-align: center;
+    
 }
 .category{
     text-indent: -1rem;

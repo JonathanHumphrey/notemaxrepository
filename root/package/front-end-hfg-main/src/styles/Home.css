@@ -49,21 +49,7 @@
     margin: auto;
 }
 .styled-link{
-    text-decoration: none;
     
-    width: 279px;
-    height: 40px;
-    left: 787px;
-    top: 504px;
-    background: #9767DA;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;    
-    font-family: 'Kufam';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 35px;
-    text-align: center;
 
 }
 .styled-link:visited{
@@ -130,3 +116,4 @@ color: #FFFFFF;
     border-radius: 50%;
     display: inline-block;
   }
+  

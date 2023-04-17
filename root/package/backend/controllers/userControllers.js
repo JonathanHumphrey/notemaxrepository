@@ -9,7 +9,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
 	if (userExists) {
 		res.status(404);
-		throw new Error("User already exists");
+		throw new Error(`Email already in use`);
 	}
 
 	console.log("creating user ", req.body.name);
@@ -86,7 +86,6 @@ const deleteUser = asyncHandler(async (req, res) => {
 // @desc adds a liked category to the users profile
 // @params user_id, category
 const addLikedCategory = asyncHandler(async (req, res) => {
-	console.log(req.body);
 	const user_id = req.body.id;
 	const categoriesToAdd = req.body.array;
 
@@ -105,8 +104,9 @@ const addLikedCategory = asyncHandler(async (req, res) => {
 		if (!user) {
 			return res.status(400).json({ message: "User not found" });
 		}
-		await user.save();
-		res.status(200).json({ message: `Categories added successfully` });
+		const updatedUser = await user.save();
+		res.status(200);
+		res.json(updatedUser);
 	} catch (err) {
 		console.error("Error adding category:", err);
 		res.status(500).json({ error: "Failed to add category" });
@@ -114,9 +114,9 @@ const addLikedCategory = asyncHandler(async (req, res) => {
 });
 
 const removeLikedCategory = asyncHandler(async (req, res) => {
-	console.log(req.body);
 	const user_id = req.body.id;
 	const categories = req.body.array;
+	console.log(req.body);
 
 	if (!user_id && !category) {
 		return res.status(400).json({ message: "User Id & category Required" });
@@ -131,16 +131,13 @@ const removeLikedCategory = asyncHandler(async (req, res) => {
 		user.categories.forEach((element, index) => {
 			if (categories.includes(element)) {
 				user.categories.splice(index, 1);
-			} else {
-				return res.status(404).json({ error: "Category not found" });
 			}
 		});
-		await user.save();
+		const updatedUser = await user.save();
 		res.status(200);
-		res.json({ message: `Category removed correctly` });
+		res.json(updatedUser);
 	} catch (err) {
 		console.error("Error deleting category:", err);
-		res.status(500).json({ error: "Failed to failed category" });
 	}
 });
 

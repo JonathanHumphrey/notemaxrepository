@@ -94,6 +94,8 @@ const Dash = () => {
 										dislikes={data.dislikes}
 										category={data.category}
 										description={data.description}
+										usersLiked={data.usersLiked}
+										usersDisliked={data.usersDisliked}
 									/>
 								) : null
 							)}
@@ -120,6 +122,8 @@ const Dash = () => {
 											dislikes={data.dislikes}
 											category={data.category}
 											description={data.description}
+											usersLiked={data.usersLiked}
+											usersDisliked={data.usersDisliked}
 										/>
 									) : null
 								)}

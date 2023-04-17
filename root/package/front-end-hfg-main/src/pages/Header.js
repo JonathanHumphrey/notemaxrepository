@@ -1,12 +1,13 @@
 import React from "react";
 import UserModal from "./UserModal";
-//import logo from './logo2.png';
 
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useGetUsersQuery } from "../features/usersApiSlice";
 import { selectUserById } from "../features/usersApiSlice";
+
+import "../styles/Header.css";
 
 import logo from "../static/logo.png";
 
@@ -20,6 +21,7 @@ const Header = () => {
 	const user = useSelector((state) => selectUserById(state, userId));
 
 	const [isOpen, setOpen] = useState(false);
+	const [currentPage, setPage] = useState("/dash");
 
 	const handleModalOpen = () => {
 		setOpen(true);
@@ -28,6 +30,10 @@ const Header = () => {
 		setOpen(false);
 	};
 
+	const handleClick = (event) => {
+		const id = event.target.id;
+		setPage(id);
+	};
 	return (
 		<header>
 			{user ? (
@@ -45,18 +51,32 @@ const Header = () => {
 							></img>
 						</Link>
 					</div>
-					<br></br>
-					<br></br>
-					<br></br>
-					<Link to="/dash">
-						<h5>Home</h5>
-					</Link>
-					<Link to="/dash">
-						<h5>Your Notes</h5>
-					</Link>
-					<Link to="/dash">
-						<h5>Templates</h5>
-					</Link>
+					<div className="side-links">
+						<Link
+							className={currentPage === "home" ? "nav active" : "nav"}
+							to="/dash"
+							id="home"
+							onClick={handleClick}
+						>
+							Home
+						</Link>
+						<Link
+							className={currentPage === "notes" ? "nav active" : "nav"}
+							to="/user-notes"
+							id="notes"
+							onClick={handleClick}
+						>
+							Your Notes
+						</Link>
+						<Link
+							className={currentPage === "categories" ? "nav active" : "nav"}
+							to="/user-categories"
+							id="categories"
+							onClick={handleClick}
+						>
+							Your Categories
+						</Link>
+					</div>
 				</div>
 			) : (
 				<div className="left-blockNotlogged"></div>

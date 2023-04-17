@@ -13,8 +13,8 @@ router
 	.get(fileController.getAllFiles)
 	.delete(fileController.deleteFile);
 
-router.route("/like/:id").put(updateLikeCount);
-router.route("/dislike/:id").put(fileController.updateDislikeCount);
+router.route("/like/:id/:user").put(updateLikeCount);
+router.route("/dislike/:id/:user").put(fileController.updateDislikeCount);
 
 module.exports = router;
 

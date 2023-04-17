@@ -23,6 +23,7 @@ const NewUserForm = () => {
 	const [password, setPassword] = useState("");
 	const [validPassword, setValidPassword] = useState(false);
 	const [categories, setCategories] = useState(["Worksheets"]);
+	const [signUpError, setError] = useState("");
 
 	useEffect(() => {
 		setValidName(USER_REGEX.test(name));
@@ -43,7 +44,11 @@ const NewUserForm = () => {
 			setCategories([]);
 			navigate("/login");
 		}
-	}, [isSuccess, navigate]);
+		if (isError) {
+			console.log(isError);
+			//setError
+		}
+	}, [isSuccess, isError, navigate]);
 	const onnameChanged = (e) => setName(e.target.value);
 	const onPasswordChanged = (e) => setPassword(e.target.value);
 	const onEmailChanged = (e) => setEmail(e.target.value);

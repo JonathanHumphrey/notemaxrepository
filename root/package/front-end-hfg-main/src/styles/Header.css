@@ -1,0 +1,53 @@
+.side-links{
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    text-align: center;
+  }
+  .nav{
+    text-decoration: none;
+    background: #9767DA;
+    margin-bottom: 2rem;
+    
+    width: 100%rem;
+  }
+  .nav:hover{
+    background: azure;
+  }
+  .nav:active{
+    background: azure;
+  }
+  .active{
+    background: azure;
+  }
+  .left-block{
+    
+    padding-bottom: 40;
+    width: 12%;
+    align-self: flex-start;
+    display: inherit;
+    flex-direction: column;
+    height: 100vh;
+    background: linear-gradient(0deg, rgba(195, 176, 252, 0) 0%, #C3B0FC 66.47%);
+    align-items: center;
+    font-size: 22px;
+    
+  }
+  .right-block{
+    width: 30%;
+    margin: auto;
+    display: inherit;
+    justify-content: right;
+    position: relative;
+    left: 30rem;
+    top: 2rem;
+  }
+  .center-image{
+    display:flex;
+    justify-content:center; /* horizontally center */
+    align-items:center;    /* vertically center */
+   
+   
+  }

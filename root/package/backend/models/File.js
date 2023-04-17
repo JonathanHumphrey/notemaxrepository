@@ -35,7 +35,14 @@ const fileSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	usersLiked: {
+		type: Array,
+		required: true,
+	},
+	usersDisliked: {
+		type: Array,
+		required: true,
+	},
 });
-
 const File = mongoose.model("File", fileSchema);
 module.exports = File;

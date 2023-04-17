@@ -1,6 +1,6 @@
 import { formatUTCDate } from "../features/formatTime";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../styles/FileUpload.css";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useUploadFileMutation } from "../features/fileApiSlice";
@@ -24,6 +24,12 @@ const FileUpload = (props) => {
 
 	const [value, setValue] = useState("");
 	const [remainingChars, setRemainingChars] = useState(180);
+
+	useEffect(() => {
+		if (isSuccess) {
+			props.hideModal();
+		}
+	}, [isSuccess]);
 
 	const options = Object.values(user.categories).map((category) => {
 		return (
@@ -74,6 +80,8 @@ const FileUpload = (props) => {
 		formData.append("dislikes", dislikes);
 		formData.append("category", categories);
 		formData.append("description", value);
+		formData.append("usersLiked", []);
+		formData.append("usersDisliked", []);
 
 		for (var key of formData.entries()) {
 			console.log(key[0] + ", " + key[1]);

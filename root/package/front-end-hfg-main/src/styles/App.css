@@ -33,6 +33,9 @@
 #user{
   cursor: pointer;
 }
+#text{
+  font-size: 5rem;
+}
 h3{
   margin: 2rem;
 }

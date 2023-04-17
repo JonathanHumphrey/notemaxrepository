@@ -49,6 +49,7 @@ const Dash = () => {
 		return (
 			<div className="dash-container">
 				<h2>Welcome, {user.name}</h2>
+
 				<div className="template-container">
 					<ModalProvider>
 						<ModalContext.Consumer>
@@ -56,11 +57,13 @@ const Dash = () => {
 								<>
 									<div className="button-group">
 										<button
+											className="modal-btn"
 											onClick={() => showModal({ component: UpdateTemplate })}
 										>
-											Update Template Preferences
+											Update Categories
 										</button>
 										<button
+											className="modal-btn"
 											onClick={() => showModal({ component: FileUpload })}
 										>
 											Upload Template

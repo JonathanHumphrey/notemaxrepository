@@ -32,6 +32,7 @@
     margin-right: auto;
     height: auto;
     text-align: left;
+    box-shadow: 10px 10px 22px -3px rgba(0,0,0,0.53);
 }
 .user-feed{
     display: flex;
@@ -48,6 +49,27 @@
     height: auto;
     align-content: flex-start;
     text-align: left;
+    box-shadow: 10px 10px 22px -3px rgba(0,0,0,0.53);
+}
+.modal-btn{
+    color: black;
+    font-weight: bold;
+    padding: 1rem;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    margin: auto;
+    margin-top: 4rem;
+    cursor: pointer;
+    width: 15rem;
+    background: #9767DA;
+    border-radius: 1rem;
+    
+}
+.modal-btn:hover{
+    background: #C3B0FC;
+    transform: translateY(3px);
+    box-shadow: 10px 10px 22px -3px rgba(0,0,0,0.53);
 }
 form{
     display: flex;

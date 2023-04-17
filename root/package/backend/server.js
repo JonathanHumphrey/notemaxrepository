@@ -1,18 +1,20 @@
 const express = require("express");
 const path = require("path");
-const { logger, logEvents } = require("./middleware/logger");
-const errorHandler = require("./middleware/errorHandler");
 const cors = require("cors");
 const corsOptions = require("./config/corsOptions");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const mongoose = require("mongoose");
-const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
+const cookieParser = require("cookie-parser");
+
+// Middleware / logging
+const { logger, logEvents } = require("./middleware/logger");
+const errorHandler = require("./middleware/errorHandler");
+
+// User actions and routes
+const { uploadFile } = require("./controllers/fileController");
 const userRoutes = require("./routes/userRoutes.js");
 const fileRoutes = require("./routes/fileRoutes.js");
-
-const { uploadFile } = require("./controllers/fileController");
 
 const app = express();
 dotenv.config();

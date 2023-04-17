@@ -37,22 +37,22 @@
     text-indent: -1rem;
 }
 .buttons{
-    
     display: flex;
     width: 50%;
 }
 .sub-btn{
-    color: white;
+    color: black;
+    font-weight: bold;
     padding: 1rem;
     text-align: center;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 1rem;
     margin: auto;
     margin-top: 4rem;
     cursor: pointer;
     width: 10rem;
     background: #C3B0FC;
-    border-radius: 20px;
+    border-radius: 1rem;
 }
 .sub-btn:hover{
     

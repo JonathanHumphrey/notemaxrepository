@@ -8,6 +8,7 @@
     display: none;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 .modal-container.open{
     display: flex;
@@ -32,6 +33,16 @@
     display: inherit;
     flex-direction: row;
     justify-content: space-between;
+}
+.title-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+.title-input{
+    padding: .25rem;
+    border-radius: .2rem;
+    border: none;
+    font-family: "Kufam";
 }
 .sub-btn{
     color: black;

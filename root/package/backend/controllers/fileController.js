@@ -40,6 +40,7 @@ const uploadFile = asyncHandler(async (req, res) => {
 			username: fileData.username,
 			file: file,
 			date: fileData.date,
+			title: fileData.title,
 			likes: fileData.likes,
 			dislikes: fileData.dislikes,
 			category: fileData.category,
@@ -55,6 +56,7 @@ const uploadFile = asyncHandler(async (req, res) => {
 				username: fileData.username,
 				file: fileForUpload.file,
 				date: fileForUpload.date,
+				title: fileForUpload.title,
 				likes: fileForUpload.likes,
 				dislikes: fileForUpload.dislikes,
 				category: fileForUpload.category,
@@ -118,7 +120,7 @@ const updateDislikeCount = asyncHandler(async (req, res) => {
 // @params: fileId
 const deleteFile = asyncHandler(async (req, res) => {
 	console.log(req.body);
-	const { id } = req.body;
+	const id = req.body.id;
 
 	if (!id) {
 		return res.status(400).json({ message: "File Id Required" });

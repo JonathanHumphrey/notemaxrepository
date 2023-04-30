@@ -17,6 +17,7 @@ const YourNotes = () => {
 	const userId = localStorage.getItem("userId");
 	const user = useSelector((state) => selectUserById(state, userId));
 	const files = useSelector((state) => selectAllFiles(state));
+
 	const content = (
 		<div className="notes-container">
 			{user.categories.map((category, id) => (
@@ -25,12 +26,14 @@ const YourNotes = () => {
 					<br></br>
 					{files.map((data, index) =>
 						user.categories.includes(data.category) &&
-						category === data.category ? (
+						category === data.category &&
+						userId === data.author ? (
 							<ItemCard
 								key={index}
 								id={data._id}
 								author={data.author}
-								username={data.username}
+								title={data.title}
+								username={user.name}
 								file={data.file}
 								date={data.date}
 								likes={data.likes}

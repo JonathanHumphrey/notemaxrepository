@@ -21,7 +21,7 @@ const Header = () => {
 	const user = useSelector((state) => selectUserById(state, userId));
 
 	const [isOpen, setOpen] = useState(false);
-	const [currentPage, setPage] = useState("/dash");
+	const [currentPage, setPage] = useState("home");
 
 	const handleModalOpen = () => {
 		setOpen(true);
@@ -32,6 +32,7 @@ const Header = () => {
 
 	const handleClick = (event) => {
 		const id = event.target.id;
+
 		setPage(id);
 	};
 	return (

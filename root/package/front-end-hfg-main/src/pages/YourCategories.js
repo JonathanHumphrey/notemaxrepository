@@ -27,13 +27,13 @@ const YourCategories = () => {
 					<br></br>
 					{files.map((data, index) =>
 						user.categories.includes(data.category) &&
-						category === data.category &&
-						userId === data.author ? (
+						category === data.category ? (
 							<ItemCard
 								key={index}
 								id={data._id}
-								author={userId}
-								username={user.name}
+								title={data.title}
+								author={data.author}
+								username={data.username}
 								file={data.file}
 								date={data.date}
 								likes={data.likes}

@@ -97,7 +97,6 @@ const NewUserForm = () => {
 	const content = (
 		<>
 			<div className="page-body">
-				<div className="image">Insert Image Here</div>
 				<div className="form-container">
 					<p className={errClass}>{error?.data?.message}</p>
 
@@ -147,16 +146,6 @@ const NewUserForm = () => {
 						<label className="form__label" htmlFor="categories">
 							What are you most interested in?
 						</label>
-						{/*
-							<div className="form__row">
-								<button className="btn-group btn-group-select" title="Sign Up" disabled={!canSave}>
-									Notes
-								</button>
-								<button className="btn-group btn-group-select" title="Sign Up" disabled={!canSave}>
-									Templates
-								</button>
-							</div>
-						 */}
 
 						<div className="select-wrapper">
 							<select

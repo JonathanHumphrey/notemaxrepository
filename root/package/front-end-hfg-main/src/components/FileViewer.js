@@ -121,6 +121,7 @@ const FileViewer = () => {
 						<div className="file-slot">
 							{buffer ? (
 								<Document
+									id="file-viewer"
 									file={url}
 									onDocumentLoadSuccess={onDocumentLoadSuccess}
 								>

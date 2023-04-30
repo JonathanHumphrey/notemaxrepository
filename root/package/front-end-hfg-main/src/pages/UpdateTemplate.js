@@ -76,7 +76,7 @@ const UpdateTemplate = (props) => {
 						</p>
 					))}
 				</div>
-				<div className="select-wrapper">
+				<div className="select">
 					<select
 						id="categories"
 						name="categories"

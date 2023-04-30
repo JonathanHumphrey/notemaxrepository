@@ -1,12 +1,22 @@
 .item-container {
     border: solid black;
-    width: 20rem;
+    width: 22rem;
     display: flex;
     flex-flow: column wrap;
     margin: 1rem;
     border-radius: 1rem;
     height: auto;
     background-color: aliceblue;
+    position: relative;
+}
+.icon{
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
+}
+.fa-trash-can{
+    cursor: pointer;
 }
 h3{
     margin: .5rem;

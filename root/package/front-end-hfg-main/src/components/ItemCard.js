@@ -1,10 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { useDeleteFileMutation } from "../features/fileApiSlice";
+import { useNavigate } from "react-router-dom";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+
 import "../styles/ItemCard.css";
 
 const ItemCard = (props) => {
-	//const [data, setData] = useState()
+	const userId = localStorage.getItem("userId");
+	const navigate = useNavigate();
+	const [deleteFile, { isSuccess }] = useDeleteFileMutation();
+
 	const fileObject = {
 		id: props.id,
 		author: props.author,
@@ -18,10 +27,29 @@ const ItemCard = (props) => {
 		usersLiked: props.usersLiked,
 		usersDisliked: props.usersDisliked,
 	};
-	//setData(fileObject)
+
+	const handleDelete = (event) => {
+		if (!event.shiftKey) {
+			alert("Shift + Click to Delete");
+		} else {
+			const fileId = props.id;
+			const data = {
+				id: fileId,
+			};
+			deleteFile(data);
+			navigate("/dash");
+		}
+	};
+
 	return (
 		<div className="item-container" onClick={() => console.log(fileObject)}>
-			<h3>{props.username}</h3>
+			{userId === props.author ? (
+				<div className="icon">
+					<FontAwesomeIcon icon={faTrashCan} onClick={handleDelete} />
+				</div>
+			) : null}
+			<h3>{props.title}</h3>
+			<h3>By: {props.username}</h3>
 			<p>Likes: {props.likes}</p>
 			<p>Dislikes: {props.dislikes}</p>
 

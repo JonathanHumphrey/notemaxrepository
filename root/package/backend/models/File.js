@@ -27,6 +27,10 @@ const fileSchema = new mongoose.Schema({
 		default: 0,
 		required: true,
 	},
+	title: {
+		type: String,
+		required: true,
+	},
 	category: {
 		type: String,
 		required: true,

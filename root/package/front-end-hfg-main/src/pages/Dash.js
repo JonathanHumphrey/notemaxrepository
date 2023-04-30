@@ -76,18 +76,26 @@ const Dash = () => {
 					</ModalProvider>
 				</div>
 				<div className="content-feed">
-					{user.categories.map((category, id) => (
-						<div className="user-categories" key={id}>
-							<h4>{category}</h4>
-							<br></br>
-							{files.map((data, index) =>
-								user.categories.includes(data.category) &&
-								category === data.category ? (
+					{user.categories.map((category, id) => {
+						const filteredFiles = files
+							.filter(
+								(data) =>
+									user.categories.includes(data.category) &&
+									category === data.category
+							)
+							.sort((a, b) => b.likes - a.likes);
+
+						return (
+							<div className="user-categories" key={id}>
+								<h4>{category}</h4>
+								<br />
+								{filteredFiles.map((data, index) => (
 									<ItemCard
 										key={index}
 										id={data._id}
 										author={data.author}
 										username={data.username}
+										title={data.title}
 										file={data.file}
 										date={data.date}
 										likes={data.likes}
@@ -97,10 +105,10 @@ const Dash = () => {
 										usersLiked={data.usersLiked}
 										usersDisliked={data.usersDisliked}
 									/>
-								) : null
-							)}
-						</div>
-					))}
+								))}
+							</div>
+						);
+					})}
 					<div className="user-templates">
 						<h3>User's Templates</h3>
 						{user.categories.map((category, id) => (
@@ -115,6 +123,7 @@ const Dash = () => {
 											key={index}
 											id={data._id}
 											author={userId}
+											title={data.title}
 											username={user.name}
 											file={data.file}
 											date={data.date}

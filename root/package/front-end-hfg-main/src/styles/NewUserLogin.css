@@ -129,14 +129,13 @@ select::-ms-expand {
   text-align: center;
   display: flex;
   justify-content: center;
-  min-width: 15ch;
- 
-
+  margin: auto;
+  margin-bottom: 1rem;
+  min-width: 45rem;
   font-size: 1.25rem;
   cursor: pointer;
   line-height: 1.1;
  
-  
 }
 .select-wrapper::after{
  

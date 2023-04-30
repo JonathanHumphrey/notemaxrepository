@@ -22,6 +22,7 @@ const FileUpload = (props) => {
 	const [likes, setLikes] = useState(0);
 	const [dislikes, setDislikes] = useState(0);
 
+	const [title, setTitle] = useState("");
 	const [value, setValue] = useState("");
 	const [remainingChars, setRemainingChars] = useState(180);
 
@@ -57,6 +58,10 @@ const FileUpload = (props) => {
 		const charsLeft = 180 - inputValue.length;
 		setRemainingChars(charsLeft);
 	};
+	const handleTitle = (event) => {
+		const titleInput = event.target.value;
+		setTitle(titleInput);
+	};
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
@@ -70,7 +75,6 @@ const FileUpload = (props) => {
 			type: file.type,
 		});
 
-		console.log(renamedFile);
 		const formData = new FormData();
 		formData.append("file", renamedFile);
 		formData.append("author", userId);
@@ -79,16 +83,13 @@ const FileUpload = (props) => {
 		formData.append("likes", likes);
 		formData.append("dislikes", dislikes);
 		formData.append("category", categories);
+		formData.append("title", title);
 		formData.append("description", value);
 		formData.append("usersLiked", []);
 		formData.append("usersDisliked", []);
 
-		for (var key of formData.entries()) {
-			console.log(key[0] + ", " + key[1]);
-		}
-
 		const payload = await uploadFile({ formData });
-		console.log(payload);
+		window.location.reload();
 	};
 
 	const content = (
@@ -119,6 +120,17 @@ const FileUpload = (props) => {
 							>
 								{options}
 							</select>
+						</div>
+						<div className="title-wrapper">
+							<label htmlFor="title">Document Title:</label>
+							<input
+								className="title-input"
+								type="text"
+								name="title"
+								placeholder="Enter document title"
+								onChange={handleTitle}
+								value={title}
+							/>
 						</div>
 						<div className="description-wrapper">
 							<div className="description-header">

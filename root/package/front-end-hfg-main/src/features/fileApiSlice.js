@@ -31,15 +31,14 @@ export const fileApiSlice = apiSlice.injectEndpoints({
 			}),
 		}),
 		deleteFile: builder.mutation({
-			query: ({ id }) => ({
+			query: (data) => ({
 				url: "api/files",
 				method: "DELETE",
-				body: { id },
+				body: { ...data },
 			}),
 		}),
 		updateLikes: builder.mutation({
 			query(data) {
-				console.log(data);
 				return {
 					url: `api/files/like/${data.fileId}/${data.userId}`,
 					method: "PUT",
@@ -49,7 +48,6 @@ export const fileApiSlice = apiSlice.injectEndpoints({
 		}),
 		updateDislikes: builder.mutation({
 			query(data) {
-				console.log(data);
 				return {
 					url: `api/files/dislike/${data.fileId}/${data.userId}`,
 					method: "PUT",
@@ -65,6 +63,7 @@ export const {
 	useGetFilesQuery,
 	useUpdateLikesMutation,
 	useUpdateDislikesMutation,
+	useDeleteFileMutation,
 } = fileApiSlice;
 
 export const selectFileResult = fileApiSlice.endpoints.getFiles.select();
